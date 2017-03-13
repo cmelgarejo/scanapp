@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 5) do
     t.text     "label"
     t.text     "qrcode"
     t.jsonb    "properties"
-    t.boolean  "enabled",    default: true
-    t.boolean  "template",   default: false
+    t.boolean  "enabled",     default: true
+    t.boolean  "is_template", default: false
     t.integer  "company_id"
     t.uuid     "item_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["company_id"], name: "index_items_on_company_id", using: :btree
     t.index ["item_id"], name: "index_items_on_item_id", using: :btree
   end

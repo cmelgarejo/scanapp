@@ -9,11 +9,10 @@ company = CreateCompanyService.new.call
 puts 'CREATED ADMIN COMPANY: ' << company.name
 user = CreateAdminService.new.call(company.id)
 puts 'CREATED ADMIN USER: ' << user.email
-item1 = CreateItemService.new.call(company.id, 'Item 1', true)
-item2 = CreateItemService.new.call(company.id, 'Item 2')
-item3 = CreateItemService.new.call(company.id, 'Item 3')
-item3.template_item = item1
+item1 = CreateItemService.new.call(company.id, 'Item 1', { fibra: nil }, true)
+item2 = CreateItemService.new.call(company.id, 'Item 2', nil, false, item1)
+item3 = CreateItemService.new.call(company.id, 'Item 3', nil, false, item1, [item2])
+#item4 =
+    CreateItemService.new.call(company.id, 'Item 4', nil, false, item1, [item2, item3])
 ## Have a form to create items with template: true
 ## and properties { key: value } to be the base for the rest
-item3.save!
-

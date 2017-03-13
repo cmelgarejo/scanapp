@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.text :qrcode
       t.jsonb :properties
       t.boolean :enabled, default: true
-      t.boolean :template, default: false
+      t.boolean :is_template, default: false
       t.references :company, foreign_key: true, index: true
       t.references :item, type: :uuid, foreign_key: true, index: true
 
