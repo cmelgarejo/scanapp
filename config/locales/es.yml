@@ -1,0 +1,10 @@
+---
+es:
+  about: Acerca de
+  edit_account: Editar Cuenta
+  sign_in: Ingresar
+  sign_out: Salir
+  sign_up: Registrarse
+  user_deleted: Usuario Eliminado
+  user_not_updated: No se ha podido modificar al usuario
+  user_updated: Usuario Actualizado
