@@ -1,3 +1,4 @@
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -68,4 +69,69 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+    # Bullet.growl = true
+    # Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
+    #                 :password => 'bullets_password_for_jabber',
+    #                 :receiver => 'your_account@jabber.org',
+    #                 :show_online_status => true }
+    # Bullet.honeybadger = true
+    # Bullet.bugsnag = true
+    # Bullet.airbrake = true
+    # Bullet.rollbar = true
+    # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
+    # Bullet.stacktrace_excludes = [ 'their_gem', 'their_middleware' ]
+    # Bullet.slack = { webhook_url: 'http://some.slack.url', channel: '#default', username: 'notifier' }
+    # Each of these settings defaults to true
+
+    # Detect N+1 queries
+    # Bullet.n_plus_one_query_enable     = false
+
+    # Detect eager-loaded associations which are not used
+    # Bullet.unused_eager_loading_enable = false
+
+    # Detect unnecessary COUNT queries which could be avoided
+    # with a counter_cache
+    # Bullet.counter_cache_enable        = false
+  end
+
+  # Peeked::Application.configure do
+  #   # Redis with no options
+  #   config.peek.adapter = :redis
+  #
+  #   # Redis with options
+  #   config.peek.adapter = :redis, {
+  #       :client => Redis.new,
+  #       :expires_in => 60 * 30 # => 30 minutes in seconds
+  #   }
+  #
+  #   # # Memcache with no options
+  #   # config.peek.adapter = :memcache
+  #   #
+  #   # # Memcache with options
+  #   # config.peek.adapter = :memcache, {
+  #   #     :client => Dalli::Client.new,
+  #   #     :expires_in => 60 * 30 # => 30 minutes in seconds
+  #   # }
+  #   #
+  #   # # Elasticsearch with no options
+  #   # config.peek.adapter = :elasticsearch
+  #   #
+  #   # # Elasticsearch with options
+  #   # config.peek.adapter = :elasticsearch, {
+  #   #     :client => Elasticsearch::Client.new,
+  #   #     :expires_in => 60 * 30, # => 30 minutes in seconds
+  #   #     :index => 'peek_requests_index',
+  #   #     :type => 'peek_request'
+  #   # }
+  #
+  #   # ...
+  # end
 end

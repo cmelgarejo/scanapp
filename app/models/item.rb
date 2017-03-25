@@ -6,4 +6,14 @@ class Item < ApplicationRecord
                           join_table: :item_relationships,
                           foreign_key: :item_id,
                           association_foreign_key: :parent_id
+  #Carrierwave stuff
+  mount_uploader :picture, DocumentUploader
+  has_many :documents
+  attr_accessor :document_data
+
+  def Properties
+    require 'json'
+    JSON.parse(self.properties)
+  end
+
 end

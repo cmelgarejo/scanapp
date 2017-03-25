@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Id:</strong>
   <%= @item.id %>
@@ -12,18 +10,35 @@
 
 <p>
   <strong>Qrcode:</strong>
-  <%= @item.qrcode %>
+  <%= @qr = RQRCode::QRCode.new( 'https://github.com/whomwah/rqrcode', :size => 4, :level => :h ) %>
 </p>
 
 <p>
   <strong>Properties:</strong>
-  <%= @item.properties %>
+  <br/>
+  <% @item.properties.keys.each do |p|%>
+      <%= p %> : <%= @item.properties[p] %>
+  <% end %>
 </p>
 
 <p>
   <strong>Enabled:</strong>
   <%= @item.enabled %>
 </p>
+
+<label>Documents</label>
+<table>
+  <% @item.documents.each do |doc| %>
+  <tr>
+    <td>
+      <%= doc.document.file.filename %>
+    </td>
+    <td>
+      <%= image_tag(doc.document.url) %>
+    </td>
+  </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

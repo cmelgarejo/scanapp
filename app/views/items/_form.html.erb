@@ -1,12 +1,23 @@
-<%= simple_form_for(@item) do |f| %>
+<%= simple_form_for @item , html: {multipart: true}  do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :id %>
     <%= f.input :label %>
     <%= f.input :qrcode %>
-    <%= f.input :properties %>
+    <%#= f.input :properties, as: :text %>
     <%= f.input :enabled %>
+    <%= f.input :is_root %>
+    <%= f.input :is_template %>
+    <%= f.input :company_id %>
+
+        <p>
+          <label>Documents</label>
+          <%= image_tag(@item.picture.url) if @item.picture? %>
+          <%= f.file_field :picture%>
+          <%= f.hidden_field :picture_cache %>
+        </p>
+
   </div>
 
   <div class="form-actions">

@@ -1,10 +1,12 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-
+  #before_action :authenticate_user!
+  #after_action :verify_authorized
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
+    #authorize Item
   end
 
   # GET /items/1
@@ -28,6 +30,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        @item.documents.create!(document: params[:item][:picture]) if params[:item][:picture]
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
@@ -42,6 +45,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
+        @item.documents.create!(document: params[:item][:picture]) if params[:item][:picture]
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
@@ -69,6 +73,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:id, :label, :qrcode, :properties, :enabled)
+      params.require(:item).permit(:id, :label, :qrcode, :properties, :enabled, :is_template, :is_root, :company, :item, :document_data => [])
     end
 end

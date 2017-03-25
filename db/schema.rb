@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 6) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 5) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.uuid     "item_id"
+    t.string   "document"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_documents_on_item_id", using: :btree
+  end
+
   create_table "item_relationships", id: false, force: :cascade do |t|
     t.uuid     "item_id",    null: false
     t.uuid     "parent_id",  null: false
@@ -34,9 +42,11 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.text     "label"
     t.text     "qrcode"
+    t.string   "picture"
     t.jsonb    "properties"
     t.boolean  "enabled",     default: true
     t.boolean  "is_template", default: false
+    t.boolean  "is_root",     default: false
     t.integer  "company_id"
     t.uuid     "item_id"
     t.datetime "created_at",                  null: false
@@ -66,6 +76,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "documents", "items"
   add_foreign_key "items", "companies"
   add_foreign_key "items", "items"
   add_foreign_key "users", "companies"

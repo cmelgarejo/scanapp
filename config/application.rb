@@ -17,7 +17,7 @@ module RailsDevisePundit
         routing_specs: false,
         controller_specs: false,
         request_specs: false
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
     config.i18n.default_locale = :es
@@ -25,5 +25,12 @@ module RailsDevisePundit
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+    #config.api_only = true
   end
 end
