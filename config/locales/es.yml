@@ -1,5 +1,6 @@
 ---
 es:
+  document: Documento
   about: Acerca de
   edit_account: Editar Cuenta
   sign_in: Ingresar
@@ -8,3 +9,47 @@ es:
   user_deleted: Usuario Eliminado
   user_not_updated: No se ha podido modificar al usuario
   user_updated: Usuario Actualizado
+  admin:
+    home:
+      name: Ir a Aplicación
+    form:
+      save: Guardar
+      save_and_add_another: Guardar y Agregar Nuevo
+      save_and_edit: Guardar y Salir
+      cancel: Cancelar
+      optional: Opcional
+      required: Requerido
+      #csv.encoding_to_help
+    export:
+      menu: Exportar
+      confirmation: Exportar
+      name:
+        encoding_to_help: XML
+        default_col_sep: XML
+      csv:
+        encoding_to_help: Codificación
+        default_col_sep: Separador de columnas por defecto
+    actions:
+      dashboard:
+        title: ScanApp
+        breadcrumb: Dashboard
+        menu: Dashboard
+      index:
+        menu: Lista
+        title: Lista
+        breadcrumb: Lista
+      new:
+        breadcrumb: Nuevo
+        menu: Nuevo
+        link: Nuevo
+      edit:
+        link: Editar
+      export:
+        menu: Exportar
+      history_index:
+        menu: Historico
+    misc:
+      search: Buscar
+      filter: Filtrar
+      clear_all: Limpiar todo
+      chose_all: Elegir todo

@@ -27,6 +27,9 @@ gem 'nokogiri'
 gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'carrierwave-postgresql'
+gem 'rails_admin', '~> 1.1.1'
+gem 'paper_trail'
+
 
 group :development, :test do
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?
