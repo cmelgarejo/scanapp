@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402232953) do
+ActiveRecord::Schema.define(version: 11) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.string   "author_type"
+    t.integer  "author_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -41,16 +55,20 @@ ActiveRecord::Schema.define(version: 20170402232953) do
 
   create_table "items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.text     "label"
+    t.text     "description"
     t.text     "qrcode"
+    t.text     "color_reference"
     t.string   "picture"
+    t.float    "lat"
+    t.float    "lon"
+    t.boolean  "enabled",         default: true
+    t.boolean  "is_template",     default: false
+    t.boolean  "is_root",         default: false
     t.jsonb    "properties"
-    t.boolean  "enabled",     default: true
-    t.boolean  "is_template", default: false
-    t.boolean  "is_root",     default: false
     t.integer  "company_id"
     t.uuid     "item_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["company_id"], name: "index_items_on_company_id", using: :btree
     t.index ["item_id"], name: "index_items_on_item_id", using: :btree
   end
@@ -65,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170402232953) do
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.inet     "last_sign_in_ip"
     t.string   "name"
     t.integer  "role"
     t.integer  "company_id"

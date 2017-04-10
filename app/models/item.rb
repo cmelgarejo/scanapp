@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  has_paper_trail
   alias_attribute :parents, :item
   belongs_to :company
   belongs_to :template, class_name: 'Item', foreign_key: 'item_id', optional: true

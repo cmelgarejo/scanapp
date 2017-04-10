@@ -41,7 +41,7 @@ class DocumentUploader < CarrierWave::Uploader::Base
   end
 
   def content_type_blacklist
-    ['application/text', 'application/json']
+    %w(application/text, application/json)
   end
 
   # Override the filename of the uploaded files:

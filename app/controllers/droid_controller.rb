@@ -1,0 +1,3 @@
+class DroidController < ApiController
+
+end

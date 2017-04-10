@@ -51,4 +51,22 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
   end
 
+  config.model 'Company' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  def custom_label_method
+    "Team #{self.name}"
+  end
+
+  ActiveRecord::Base.descendants.each do |imodel|
+    config.model "#{imodel.name}" do
+      list do
+        exclude_fields :created_at, :updated_at
+      end
+    end
+  end
+
 end

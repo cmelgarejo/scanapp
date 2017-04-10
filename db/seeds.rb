@@ -13,6 +13,6 @@ item1 = CreateItemService.new.call(company.id, 'Item 1', { fibra: nil }, true)
 item2 = CreateItemService.new.call(company.id, 'Item 2', nil, false, item1)
 item3 = CreateItemService.new.call(company.id, 'Item 3', nil, false, item1, [item2])
 #item4 =
-    CreateItemService.new.call(company.id, 'Item 4', nil, false, item1, [item2, item3])
+CreateItemService.new.call(company.id, 'Item 4', nil, false, item1, [item2, item3])
 ## Have a form to create items with template: true
 ## and properties { key: value } to be the base for the rest

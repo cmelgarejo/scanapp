@@ -9,7 +9,22 @@ es:
   user_deleted: Usuario Eliminado
   user_not_updated: No se ha podido modificar al usuario
   user_updated: Usuario Actualizado
+  user_details: Detalles del usuario
+  recently_updated_content: Contenido recientemente actualizado
+  Item: Item
+  Type: Tipo
+  Modified_at: Modificado
+  Admin: Administrador
+  Company_Details: Detalles de la compañía
+  Companies: Compañías
   admin:
+    table_headers:
+      username: Usuario
+      item: Elemento
+      changes: Cambios
+      model_name: Elemento
+      last_created: Ultima creación
+      records: Cantidad de registros
     home:
       name: Ir a Aplicación
     form:
@@ -39,6 +54,7 @@ es:
         title: Lista
         breadcrumb: Lista
       new:
+        title: Nuevo
         breadcrumb: Nuevo
         menu: Nuevo
         link: Nuevo
@@ -53,3 +69,4 @@ es:
       filter: Filtrar
       clear_all: Limpiar todo
       chose_all: Elegir todo
+      ago: atrás

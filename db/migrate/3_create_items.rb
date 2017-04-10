@@ -6,8 +6,8 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.text :qrcode
       t.text :color_reference
       t.string :picture
-      t.double :lat
-      t.double :lon
+      t.float :lat
+      t.float :lon
       t.boolean :enabled, default: true
       t.boolean :is_template, default: false
       t.boolean :is_root, default: false
