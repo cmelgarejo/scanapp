@@ -26,13 +26,24 @@ gem 'bootstrap-sass'
 gem 'nokogiri'
 
 gem 'carrierwave'
-gem 'carrierwave-base64'
-gem 'carrierwave-postgresql'
-gem 'rails_admin', '~> 1.1.1'
+#gem 'carrierwave-base64'
+#gem 'carrierwave-postgresql'
+#gem 'rails_admin', '~> 1.1.1'
 gem 'paper_trail'
 
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'active_material', github: 'vigetlabs/active_material'
+gem 'activeadmin_addons'
+gem 'activeadmin_latlng', github: 'cmelgarejo/activeadmin-latlng'
+gem 'cocoon'
+gem 'activeadmin-ajax_filter'
+gem 'jquery-palette-color-picker-rails', platform: :ruby
+
+
+
+#gem 'formadmin'
+
 
 group :development, :test do
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?

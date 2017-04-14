@@ -1,5 +1,6 @@
-<% content_for :title do %>About<% end %>
-<h3>About the Website</h3>
+<% content_for :title do %><%= t('about')%><%= Rails.application.class.parent %><% end %>
+<br/><br/><br/>
+<h3><%= t('about')%></h3>
 <p>
-Scanapp
+<%= Rails.application.class.parent %>
 </p>

@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require palette-color-picker
 //= require peek
 //= require peek/views/performance_bar
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require cocoon
 //= require_tree .

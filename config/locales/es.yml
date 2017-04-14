@@ -17,6 +17,20 @@ es:
   Admin: Administrador
   Company_Details: Detalles de la compañía
   Companies: Compañías
+  nothing_to_see_here: Nada que ver aquí, continua tu camino
+  Home: Inicio
+  Users: Usuarios
+  Items: Items
+  Documents: Documentos
+  Item_Details: Detalles del Item
+  active_admin:
+    dashboard: Dashboard
+    resources:
+      companies:
+        title: Companaskda
+      company:
+        new_model: Agregar Compañía
+
   admin:
     table_headers:
       username: Usuario

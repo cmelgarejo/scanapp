@@ -8,7 +8,7 @@
 company = CreateCompanyService.new.call
 puts 'CREATED ADMIN COMPANY: ' << company.name
 user = CreateAdminService.new.call(company.id)
-puts 'CREATED ADMIN USER: ' << user.email
+puts "CREATED ADMIN USER: #{user.name} - #{user.email}"
 item1 = CreateItemService.new.call(company.id, 'Item 1', { fibra: nil }, true)
 item2 = CreateItemService.new.call(company.id, 'Item 2', nil, false, item1)
 item3 = CreateItemService.new.call(company.id, 'Item 3', nil, false, item1, [item2])

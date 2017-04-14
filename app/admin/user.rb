@@ -1,7 +1,10 @@
 ActiveAdmin.register User do
-  permit_params :name, :email, :password, :password_confirmation
+  permit_params :name, :email, :password
+
+  menu label: I18n.t('Users')
 
   index do
+    title I18n.t('Users')
     selectable_column
     id_column
     column :name
@@ -22,7 +25,6 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :password
-      f.input :password_confirmation
     end
     f.actions
   end

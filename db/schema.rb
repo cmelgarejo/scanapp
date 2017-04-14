@@ -58,9 +58,8 @@ ActiveRecord::Schema.define(version: 11) do
     t.text     "description"
     t.text     "qrcode"
     t.text     "color_reference"
-    t.string   "picture"
     t.float    "lat"
-    t.float    "lon"
+    t.float    "lng"
     t.boolean  "enabled",         default: true
     t.boolean  "is_template",     default: false
     t.boolean  "is_root",         default: false
@@ -82,7 +81,7 @@ ActiveRecord::Schema.define(version: 11) do
     t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
+    t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "name"
     t.integer  "role"

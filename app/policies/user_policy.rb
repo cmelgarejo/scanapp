@@ -1,4 +1,12 @@
-class UserPolicy
+class UserPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
+# end
+
+# class UserPolicy
 
   attr_reader :current_user, :user
 

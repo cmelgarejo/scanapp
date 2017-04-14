@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_for_paper_trail
-    puts "Am I Admin? #{current_user.admin?}" if current_user
-    !current_user.nil? && current_user.admin? ? current_user.try(:id) : 1
+    current_user.try(:admin?) ? current_user.try(:id) : 1
   end
 
   # def reload_rails_admin

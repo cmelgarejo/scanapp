@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
+  has_paper_trail
   has_many :users
   has_many :items
-  has_paper_trail
 end

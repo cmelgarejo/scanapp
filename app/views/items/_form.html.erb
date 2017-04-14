@@ -13,9 +13,6 @@
 
         <p>
           <label>Documents</label>
-          <%= image_tag(@item.picture.url) if @item.picture? %>
-          <%= f.file_field :picture%>
-          <%= f.hidden_field :picture_cache %>
         </p>
 
   </div>

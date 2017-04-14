@@ -2,9 +2,9 @@ ActiveAdmin.register Company do
   permit_params :name, :description, :enabled
 
   menu label: I18n.t('Companies')
-  index title: I18n.t('Companies')
+  #index title: I18n.t('Companies')
 
-  index do
+  index title: I18n.t('Companies') do
     selectable_column
     id_column
     column :name

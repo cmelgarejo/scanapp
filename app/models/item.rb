@@ -8,7 +8,7 @@ class Item < ApplicationRecord
                           foreign_key: :item_id,
                           association_foreign_key: :parent_id
   #Carrierwave stuff
-  mount_uploader :picture, DocumentUploader
+  #mount_uploader :picture, DocumentUploader
   has_many :documents
   attr_accessor :document_data
 

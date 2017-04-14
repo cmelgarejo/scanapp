@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_paper_trail
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
@@ -11,7 +12,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_paper_trail
 
   def set_default_role
     self.role ||= :user
