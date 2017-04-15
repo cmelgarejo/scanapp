@@ -60,14 +60,13 @@ ActiveAdmin.register Item do
       tab I18n.t('Attachments') do
         #DO A ERB OR ARB PARTIAL
         panel I18n.t('Attachments') do
-          attributes_table_for resource do
-            row 'Tags' do
-              item.attachment.each do |att|
-                image_column
-                #link_to(att.path.file.original_filename, att.path.file.path, target: "_blank", class: "attachment-link")
-                a att.path.file.original_filename, href: att.path.file.path, class: 'attachment-link'
-                text_node "&nbsp;".html_safe
+          item.attachment.each do |att|
+            attributes_table_for resource do
+              row att.path.file.original_filename do
+                #puts build_label(att.path.file.original_filename, I18n.t('Download'))
+                a(build_label(att.path.file.original_filename), href: att.path, class: 'attachment-link', target: '_blank')
               end
+              nil
             end
           end
         end

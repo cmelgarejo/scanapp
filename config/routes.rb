@@ -9,8 +9,12 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
   #resources :users
-  resources :items
-  resources :companies
+  namespace :api do #namespace :api, path: "", constraints: {:subdomain => "api"} do
+    namespace :v1 do
+      resources :items
+      resources :companies
+    end
+  end
 
 
 end

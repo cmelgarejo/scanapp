@@ -24,6 +24,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'nokogiri'
+gem 'file_validators'
 
 gem 'carrierwave'
 #gem 'carrierwave-base64'
@@ -49,6 +50,7 @@ group :development, :test do
   gem 'i18n-tasks'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'meta_request'
 end
 group :development do
   gem 'html_routes'
