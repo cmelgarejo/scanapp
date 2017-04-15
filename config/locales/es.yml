@@ -13,6 +13,7 @@ es:
   recently_updated_content: Contenido recientemente actualizado
   Item: Item
   Type: Tipo
+  QRCode: Código QR
   Modified_at: Modificado
   Admin: Administrador
   Company_Details: Detalles de la compañía
@@ -22,15 +23,48 @@ es:
   Users: Usuarios
   Items: Items
   Documents: Documentos
+  Attachments: Archivos
+  Attachment: Archivo
   Item_Details: Detalles del Item
+  Label: Etiqueta
+  Color_Reference: Color de Referencia
+  Name: Nombre
+  Latitude: Latitud
+  Longitude: Longitud
+  Description: Descripción
+  Enabled: Activo
+  Created_at: Creado
+  Updated_at: Actualizado
+  save: Guardar
+  last_20_items: Últimos 20 registros
+  no_file: Aún no se ha subido ningún archivo.
+  errors:
+    messages:
+      extension_whitelist_error: Formato no permitido
   active_admin:
     dashboard: Dashboard
     resources:
-      companies:
-        title: Companaskda
+      attachment:
+        new_model: Agregar Archivo
+        edit_model: Editar Archivo
+        save_model: Editar Archivo
       company:
         new_model: Agregar Compañía
-
+        edit_model: Editar Compañía
+        save_model: Editar Compañía
+        delete_model: Eliminar Compañía
+        details: Detalles de la Compañía
+        has_many_new: Añadir Compañías
+        pagination:
+          empty: No se han encontrado Compañías
+          one: 'Mostrando <b>1</b> Compañía'
+          one_page: 'Mostrando <b>un total de %{n}</b> Compañías'
+          multiple: 'Mostrando Compañías <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>'
+        batch_actions:
+          delete_confirmation: 'Eliminar Compañías: ¿Está seguro?'
+          succesfully_destroyed:
+            one: Se ha destruido 1 Compañía con éxito
+            other: 'Se han destruido %{count} Compañías con éxito'
   admin:
     table_headers:
       username: Usuario

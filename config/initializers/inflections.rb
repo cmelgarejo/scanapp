@@ -14,3 +14,10 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+# This will provide human-readable column names across the board, including all the
+# ActiveAdmin pages (which all use pretty_format which uses the Inflector).
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.human /img$/, '\1image'
+end

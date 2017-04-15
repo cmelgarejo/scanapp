@@ -31,7 +31,7 @@ li.cancel a:hover a:focus {
 }
 
 .action_item a  {
-  background: $am-theme-accent !important;
+  background: $am-theme-primary !important;
   padding: 12px !important;
   color: $am-theme-text-reverse !important;
   font-weight: 700 !important;
@@ -43,7 +43,7 @@ a[data-method="delete"] {
 }
 
 .action_item a:hover, a:focus {
-  color: $am-theme-primary !important;
+  color: $am-theme-accent !important;
   transition: 0.1s color !important;
 }
 
@@ -105,4 +105,17 @@ span.empty {
   &.false-value {
     color: #FF0000;
   }
+}
+
+li.cancel a:hover,
+li.cancel a:focus {
+  color: white !important;
+}
+
+fieldset.actions {
+  text-align: right;
+}
+
+img.thumbnail {
+  width: 150px !important;
 }

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.3'
+gem 'dotenv-rails'
 gem 'rails', '~> 5.0.2', '>= 5.0.2'
 gem 'pg'
 gem 'puma'
@@ -22,7 +23,6 @@ gem 'high_voltage'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-
 gem 'nokogiri'
 
 gem 'carrierwave'
@@ -40,10 +40,7 @@ gem 'cocoon'
 gem 'activeadmin-ajax_filter'
 gem 'jquery-palette-color-picker-rails', platform: :ruby
 
-
-
 #gem 'formadmin'
-
 
 group :development, :test do
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?

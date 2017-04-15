@@ -10,8 +10,8 @@ ActiveAdmin.register_page "Dashboard" do
     #   end
     # end
 
-    section t('recently_updated_content') do
-      table_for PaperTrail::Version.order('id desc').limit(20) , class: 'table table-responsive table-stripped', sortable: true do # Use PaperTrail::Version if this throws an error
+    section "#{t('recently_updated_content')} - #{t('last_20_items')}" do
+      table_for PaperTrail::Version.order('id desc').limit(20) , class: 'table table-responsive table-stripped' do # Use PaperTrail::Version if this throws an error
         column (t('Item')) { |v| v.item }
         #column ('Item') { |v| link_to v.item, [:admin, v.item] } # Uncomment to display as link
         column (t('Type')) { |v| v.item_type.underscore.humanize }

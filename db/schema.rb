@@ -30,20 +30,20 @@ ActiveRecord::Schema.define(version: 11) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
   end
 
+  create_table "attachments", force: :cascade do |t|
+    t.uuid     "item_id"
+    t.string   "path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_attachments_on_item_id", using: :btree
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.boolean  "enabled"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "documents", force: :cascade do |t|
-    t.uuid     "item_id"
-    t.string   "document"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_documents_on_item_id", using: :btree
   end
 
   create_table "item_relationships", id: false, force: :cascade do |t|
@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 11) do
     t.text     "color_reference"
     t.float    "lat"
     t.float    "lng"
-    t.boolean  "enabled",         default: true
-    t.boolean  "is_template",     default: false
-    t.boolean  "is_root",         default: false
-    t.jsonb    "properties"
+    t.boolean  "enabled",          default: true
+    t.boolean  "is_template",      default: false
+    t.boolean  "is_root",          default: false
+    t.jsonb    "extra_properties"
     t.integer  "company_id"
     t.uuid     "item_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["company_id"], name: "index_items_on_company_id", using: :btree
     t.index ["item_id"], name: "index_items_on_item_id", using: :btree
   end
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 11) do
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
-  add_foreign_key "documents", "items"
+  add_foreign_key "attachments", "items"
   add_foreign_key "items", "companies"
   add_foreign_key "items", "items"
   add_foreign_key "users", "companies"

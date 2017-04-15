@@ -3,3 +3,5 @@
 #= require selectize
 #= require activeadmin-ajax_filter
 #= require palette-color-picker
+$(document).ready ->
+  $('.color-picker').paletteColorPicker()

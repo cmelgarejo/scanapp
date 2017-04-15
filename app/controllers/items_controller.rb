@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        @item.documents.create!(document: params[:item][:picture]) if params[:item][:picture]
+        @item.attachments.create!(document: params[:item][:picture]) if params[:item][:picture]
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        @item.documents.create!(document: params[:item][:picture]) if params[:item][:picture]
+        @item.attachment.create!(document: params[:item][:picture]) if params[:item][:picture]
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else

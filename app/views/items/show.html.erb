@@ -16,8 +16,8 @@
 <p>
   <strong>Properties:</strong>
   <br/>
-  <% @item.properties.keys.each do |p|%>
-      <%= p %> : <%= @item.properties[p] %>
+  <% @item.extra_properties.keys.each do |p|%>
+      <%= p %> : <%= @item.extra_properties[p] %>
   <% end %>
 </p>
 
@@ -28,7 +28,7 @@
 
 <label>Documents</label>
 <table>
-  <% @item.documents.each do |doc| %>
+  <% @item.attachment.each do |doc| %>
   <tr>
     <td>
       <%= doc.document.file.filename %>

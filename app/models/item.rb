@@ -4,17 +4,15 @@ class Item < ApplicationRecord
   belongs_to :company
   belongs_to :template, class_name: 'Item', foreign_key: 'item_id', optional: true
   has_and_belongs_to_many :item,
-                          join_table: :item_relationships,
+                          join_table: 'item_relationships',
                           foreign_key: :item_id,
                           association_foreign_key: :parent_id
-  #Carrierwave stuff
-  #mount_uploader :picture, DocumentUploader
-  has_many :documents
-  attr_accessor :document_data
+  #attr_accessor :attachments
+  has_many :attachment
+  accepts_nested_attributes_for :attachment, :allow_destroy => true
 
-  def Properties
-    require 'json'
-    JSON.parse(self.properties)
-  end
-
+  # def extra_properties
+  #   require 'json'
+  #   JSON.parse(self.extra_properties)
+  # end
 end

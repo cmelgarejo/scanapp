@@ -10,7 +10,7 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.boolean :enabled, default: true
       t.boolean :is_template, default: false
       t.boolean :is_root, default: false
-      t.jsonb :properties
+      t.jsonb :extra_properties
       t.references :company, foreign_key: true, index: true
       t.references :item, type: :uuid, foreign_key: true, index: true
 
