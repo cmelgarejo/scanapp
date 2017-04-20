@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   #before_action :reload_rails_admin, if: :rails_admin_path?
   before_action :set_paper_trail_whodunnit
 
+  def peek_enabled?
+    current_user.try(:admin?)
+  end
+
   protected
 
   def configure_permitted_parameters
