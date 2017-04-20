@@ -1,5 +1,5 @@
 #ActiveAdmin::BaseController.send(:include, ActiveAdmin::ProtectFromForgeryDevise)
-ActiveAdmin::BaseController.class_eval do
+ActiveAdmin::Devise::SessionsController.class_eval do
   protect_from_forgery prepend: true, with: :exception
 end
 ActiveadminAddons.setup do |config|
