@@ -1,5 +1,8 @@
 ActiveAdmin.register_page 'Dashboard' do
-  protect_from_forgery prepend: true, with: :exception
+  controller do
+    protect_from_forgery prepend: true, with: :exception
+
+  end
 
   menu priority: 1, label: proc{ I18n.t('active_admin.dashboard') }
 
