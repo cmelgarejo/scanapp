@@ -39,7 +39,8 @@ gem 'activeadmin_addons'
 gem 'activeadmin_latlng', github: 'cmelgarejo/activeadmin-latlng'
 gem 'cocoon'
 gem 'activeadmin-ajax_filter'
-gem 'jquery-palette-color-picker-rails', platform: :ruby
+gem 'jquery-palette-color-picker-rails', github: 'cmelgarejo/jquery-palette-color-picker-rails', platform: :ruby if Gem.win_platform?
+gem 'jquery-palette-color-picker-rails', github: 'cmelgarejo/jquery-palette-color-picker-rails' if !Gem.win_platform?
 
 #gem 'formadmin'
 

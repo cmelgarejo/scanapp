@@ -35,6 +35,11 @@ GIT
       activeadmin
 
 GIT
+  remote: git://github.com/cmelgarejo/jquery-palette-color-picker-rails.git
+  revision: e89e806d959cb5e1550c1340196d1bb868e71ca0
+  specs:
+
+GIT
   remote: git://github.com/vigetlabs/active_material.git
   revision: 853c60a22be2f6a57163a9d762da50c40e2061ec
   specs:
@@ -468,7 +473,7 @@ DEPENDENCIES
   i18n-tasks
   inherited_resources!
   jbuilder
-  jquery-palette-color-picker-rails
+  jquery-palette-color-picker-rails!
   jquery-rails
   launchy
   listen
