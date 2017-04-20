@@ -4,8 +4,10 @@
 # which in our infrastructure are stored as URLs whose column names end in "img".
 # Since this file will be reloaded frequently in the development environment,
 # all operations done at load time (class_eval's, etc.) MUST be idempotent.
+
 module ActiveAdminAddons
   class CarrierwaveAttachmentBuilder < CustomBuilder
+
     ActiveAdmin::Views::Pages::Show.class_eval do
       KNOWN_EXTENSIONS = %w{
       3gp 7z ace ai aif aiff amr asf asx bat bin bmp bup cab cbr cda cdl cdr chm
