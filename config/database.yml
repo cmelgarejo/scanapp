@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: scanapp_production
-  username: scanapp
-  password: <%= ENV['SCANAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['SCANAPP_DATABASE_URL'] %>
