@@ -25,6 +25,7 @@ es:
   Documents: Documentos
   Attachments: Archivos
   Attachment: Archivo
+  User_Details: Infomacion del usuario
   Item_Details: Detalles del Item
   Label: Etiqueta
   Color_Reference: Color de Referencia
@@ -38,7 +39,40 @@ es:
   Download: Descargar
   save: Guardar
   last_20_items: Últimos 20 registros
+  Associations: Asociaciones
+  Parents: Pertenece a
   no_file: Aún no se ha subido ningún archivo.
+  activerecord:
+      attributes:
+        user:
+          name: Nombre
+          company_id: Compañía
+          current_sign_in_at: Ultimo ingreso
+          encrypted_apssword: Password encriptado
+          company: Compañía
+          sign_in_count: Cantidad de ingresos
+          created_at: Fecha de Creación
+          updated_at: Fecha de Actualización
+          reset_password_sent_at: Último envío de reseteo de password
+          remember_created_at: Recuerdo de creación
+          current_sign_in_ip: IP Actual de ingreso
+          last_sign_in_ip: Última IP de ingreso
+        company:
+          name: Nombre
+          enabled: Activo
+          description: Descripción
+          created_at: Fecha de Creación
+          updated_at: Fecha de Actualización
+        item:
+          label: Etiqueta
+          created_at: Fecha de Creación
+          updated_at: Fecha de Actualización
+          enabled: Activo
+          description: Descripción
+          attachment: Archivo
+        attachment:
+          path: Archivo
+          name: Archivo
   errors:
     messages:
       extension_whitelist_error: Formato no permitido
@@ -49,6 +83,7 @@ es:
         new_model: Agregar Archivo
         edit_model: Editar Archivo
         save_model: Editar Archivo
+        has_many_new: Agregar Archivo
       company:
         new_model: Agregar Compañía
         edit_model: Editar Compañía
@@ -66,56 +101,3 @@ es:
           succesfully_destroyed:
             one: Se ha destruido 1 Compañía con éxito
             other: 'Se han destruido %{count} Compañías con éxito'
-  admin:
-    table_headers:
-      username: Usuario
-      item: Elemento
-      changes: Cambios
-      model_name: Elemento
-      last_created: Ultima creación
-      records: Cantidad de registros
-    home:
-      name: Ir a Aplicación
-    form:
-      save: Guardar
-      save_and_add_another: Guardar y Agregar Nuevo
-      save_and_edit: Guardar y Salir
-      cancel: Cancelar
-      optional: Opcional
-      required: Requerido
-      #csv.encoding_to_help
-    export:
-      menu: Exportar
-      confirmation: Exportar
-      name:
-        encoding_to_help: XML
-        default_col_sep: XML
-      csv:
-        encoding_to_help: Codificación
-        default_col_sep: Separador de columnas por defecto
-    actions:
-      dashboard:
-        title: ScanApp
-        breadcrumb: Dashboard
-        menu: Dashboard
-      index:
-        menu: Lista
-        title: Lista
-        breadcrumb: Lista
-      new:
-        title: Nuevo
-        breadcrumb: Nuevo
-        menu: Nuevo
-        link: Nuevo
-      edit:
-        link: Editar
-      export:
-        menu: Exportar
-      history_index:
-        menu: Historico
-    misc:
-      search: Buscar
-      filter: Filtrar
-      clear_all: Limpiar todo
-      chose_all: Elegir todo
-      ago: atrás

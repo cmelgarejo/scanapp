@@ -1,2 +1,5 @@
 h1. Scanapp
 
+TODO:
+    - Enable Pundit Adapter
+    - Item search by geoposition in a 100mts radius - Xamarin APP

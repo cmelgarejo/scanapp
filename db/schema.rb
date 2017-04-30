@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 11) do
     t.boolean  "enabled"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_companies_on_name", using: :btree
   end
 
   create_table "item_relationships", id: false, force: :cascade do |t|
@@ -51,12 +52,13 @@ ActiveRecord::Schema.define(version: 11) do
     t.uuid     "parent_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_relationships_on_item_id", using: :btree
+    t.index ["parent_id"], name: "index_item_relationships_on_parent_id", using: :btree
   end
 
   create_table "items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.text     "label"
     t.text     "description"
-    t.text     "qrcode"
     t.text     "color_reference"
     t.float    "lat"
     t.float    "lng"
@@ -65,11 +67,12 @@ ActiveRecord::Schema.define(version: 11) do
     t.boolean  "is_root",          default: false
     t.jsonb    "extra_properties"
     t.integer  "company_id"
-    t.uuid     "item_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.index "point(lat, lng)", name: "index_items_latlng_spgist", using: :spgist
     t.index ["company_id"], name: "index_items_on_company_id", using: :btree
-    t.index ["item_id"], name: "index_items_on_item_id", using: :btree
+    t.index ["description"], name: "index_items_on_description", using: :btree
+    t.index ["label"], name: "index_items_on_label", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,6 +119,5 @@ ActiveRecord::Schema.define(version: 11) do
 
   add_foreign_key "attachments", "items"
   add_foreign_key "items", "companies"
-  add_foreign_key "items", "items"
   add_foreign_key "users", "companies"
 end

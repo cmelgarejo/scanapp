@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require select2
+//= require select2_locale_es
 //= require palette-color-picker
 //= require peek
 //= require peek/views/performance_bar

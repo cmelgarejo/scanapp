@@ -14,7 +14,9 @@ ActiveAdmin.register Item do
       link_to image_tag(RQRCode::QRCode.new(item.id, :size => 8, :level => :h).as_png.to_data_url), admin_item_path(item)
     end
     column I18n.t('Description'), :description
-    column I18n.t('Color_Reference'), :color_reference
+    column I18n.t('Color_Reference') do |item|
+      raw "<div style='background-color: #{item.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{item.color_reference}'></span>"
+    end
     bool_column I18n.t('Enabled'), :enabled
     column I18n.t('Created_at'), :created_at
     column I18n.t('Updated_at'), :updated_at
@@ -44,7 +46,7 @@ ActiveAdmin.register Item do
             resource.enabled
           end
           row I18n.t('Color_Reference') do
-            resource.color_reference
+            raw "<div style='background-color: #{resource.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{resource.color_reference}'></span>"
           end
           row "#{t('Latitude')} & #{t('Longitude')}" do
             "#{resource.lat};#{resource.lng}"
@@ -57,8 +59,24 @@ ActiveAdmin.register Item do
           end
         end
       end
+      tab I18n.t('Associations') do
+        panel I18n.t('Parents') do
+          item.parents.each do |parent|
+            if parent.nil?
+              ''
+            else
+              attributes_table_for resource do
+                row parent.description do
+                  #puts build_label(att.path.file.original_filename, I18n.t('Download'))
+                  a(parent.label, href: admin_item_path(parent), class: 'attachment-link', target: '_blank')
+                end
+                nil
+              end
+            end
+          end
+        end
+      end
       tab I18n.t('Attachments') do
-        #DO A ERB OR ARB PARTIAL
         panel I18n.t('Attachments') do
           item.attachment.each do |att|
             attributes_table_for resource do
@@ -70,13 +88,6 @@ ActiveAdmin.register Item do
             end
           end
         end
-        # p = resource.attachment.each do |att|
-        #   puts link_to(att.path.file.original_filename, att.path.file.path, target: "_blank", class: "attachment-link")
-        # end
-        # puts p.map(&:path).inject(arr) { |s, e| link_to s }
-        #p.join("<br />").html_safe
-        #link_to(resource.attachment.map(&:path).map(&:file).map(&:original_filename)).html_safe
-        #resource.attachment.map(&:path).join("<br />").html_safe
       end
     end
   end
@@ -96,11 +107,26 @@ ActiveAdmin.register Item do
           f.input :lng, label: I18n.t('Longitude')
           f.latlng lang: :es, map: :yandex, id_lng: 'item_lng', start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng # add this
           f.input :enabled, label: I18n.t('Enabled')
+          #f.input :template, as: :select, collection: Items.all
+        end
+      end
+      tab I18n.t('Associations') do
+        f.inputs do
+          f.has_many :parents, heading: false, new_record: false, allow_destroy: true do |item|
+            item.input :parents, as: :select, collection: Item.pluck(:label, :id)
+          end
         end
       end
       tab I18n.t('Attachments') do
         f.has_many :attachment, heading: false, allow_destroy: true, as: :grid do |ff|
-          ff.input :path, label: I18n.t('Attachment'), as: :file, :hint => ff.object.path.present? ? image_tag(ff.object.path.url, class: 'thumbnail') : content_tag(:span, I18n.t('no_file'))
+          ff.input :path, label: I18n.t('Attachment'), as: :file, hint:
+              (ff.object.path.present? ?
+                  ((%w(jpg jpeg gif png).map { |r| ff.object.path.url.include?(r) }.inject(&:|)) ?
+                      image_tag(ff.object.path.url, class: 'thumbnail')
+                  :
+                      build_hint_file(ff.object.path.file.original_filename, ff.object.path))
+              :
+                  content_tag(:span, I18n.t('no_file')))
         end
       end
     end

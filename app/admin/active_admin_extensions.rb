@@ -41,6 +41,36 @@ module ActiveAdminAddons
         end
       end
     end
+
+    ActiveAdmin::Views::ActiveAdminForm.class_eval do
+      def icon_for_filename(filename)
+        for_ext File.extname(filename.to_s)
+      end
+
+      def for_ext(file_extension)
+        ext = file_extension.start_with?('.') ? file_extension[1..-1] : file_extension
+        ext.downcase!
+        ext = 'unknown' unless KNOWN_EXTENSIONS.include?(ext)
+        "fileicons/file_extension_#{ext}.png"
+      end
+
+      def build_hint_file(filename, link_to, label_text = I18n.t('Download'))
+        icon = icon_for_filename(filename)
+        style = {width: '20', height: '20', style: 'margin-right: 5px; vertical-align: middle;'}
+        icon_img = image_tag(icon, style)
+        text = "#{label_text} - #{filename}"
+
+        #<p class="inline-hints">
+        content_tag(:p, class: 'inline-hints') do
+          content_tag(:a, href: link_to) do
+            content_tag(:span) do
+              concat(icon_img)
+              safe_concat(text)
+            end
+          end
+        end
+      end
+    end
   end
 end
 

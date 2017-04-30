@@ -5,3 +5,4 @@
 #= require palette-color-picker
 $(document).ready ->
   $('.color-picker').paletteColorPicker()
+  #$( "select" ).select2({theme: "bootstrap"});

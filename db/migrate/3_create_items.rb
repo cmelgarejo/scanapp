@@ -1,9 +1,8 @@
 class CreateItems < ActiveRecord::Migration[5.0]
   def change
     create_table :items, id: :uuid do |t|
-      t.text :label
-      t.text :description
-      t.text :qrcode
+      t.text :label, index: true
+      t.text :description, index: true
       t.text :color_reference
       t.float :lat
       t.float :lng
@@ -12,9 +11,10 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.boolean :is_root, default: false
       t.jsonb :extra_properties
       t.references :company, foreign_key: true, index: true
-      t.references :item, type: :uuid, foreign_key: true, index: true
+      #t.references :item, type: :uuid, foreign_key: true, index: true
 
       t.timestamps
     end
+    execute 'CREATE INDEX index_items_latlng_spgist ON items USING spgist(point(lat, lng));'
   end
 end

@@ -1,31 +1,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
-  # def rails_admin?(action)
-  #   case action
-  #     when :dashboard
-  #       user.admin?
-  #     when :index
-  #       user.admin?
-  #     when :show
-  #       user.admin?
-  #     when :new
-  #       user.admin?
-  #     when :edit
-  #       user.admin?
-  #     when :destroy
-  #       user.admin?
-  #     when :export
-  #       user.admin?
-  #     when :history
-  #       user.admin?
-  #     when :show_in_app
-  #       user.admin?
-  #     else
-  #       raise ::Pundit::NotDefinedError, "unable to find policy #{action} for #{record}."
-  #   end
-  # end
-
   def initialize(user, record)
     @user = user
     @record = record
@@ -59,6 +34,7 @@ class ApplicationPolicy
     false
   end
 
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end
@@ -76,3 +52,49 @@ class ApplicationPolicy
     end
   end
 end
+
+# class ApplicationPolicy
+#   attr_reader :user, :record
+#
+#   def initialize(user, record)
+#     @user = user
+#     @record = record
+#   end
+#
+#   def index?
+#     true
+#   end
+#
+#   def show?
+#     scope.where(id: record.id).exists?
+#   end
+#
+#   def new?
+#     create?
+#   end
+#
+#   def create?
+#     true
+#   end
+#
+#   def edit?
+#     update?
+#   end
+#
+#   def update?
+#     true
+#   end
+#
+#   def destroy?
+#     true
+#   end
+#
+#   def destroy_all?
+#     true
+#   end
+#
+#   def scope
+#     Pundit.policy_scope!(user, record.class)
+#   end
+# end
+
