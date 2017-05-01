@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 11) do
+ActiveRecord::Schema.define(version: 12) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 11) do
   end
 
   create_table "item_relationships", id: false, force: :cascade do |t|
-    t.uuid     "item_id",    null: false
-    t.uuid     "parent_id",  null: false
+    t.uuid     "item_id"
+    t.uuid     "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_item_relationships_on_item_id", using: :btree
@@ -73,6 +73,22 @@ ActiveRecord::Schema.define(version: 11) do
     t.index ["company_id"], name: "index_items_on_company_id", using: :btree
     t.index ["description"], name: "index_items_on_description", using: :btree
     t.index ["label"], name: "index_items_on_label", using: :btree
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id", using: :btree
+    t.index ["user_id", "role_id"], name: "index_user_roles_on_user_id_and_role_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_user_roles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,14 +126,16 @@ ActiveRecord::Schema.define(version: 11) do
     t.string   "event",          null: false
     t.string   "whodunnit"
     t.text     "object"
-    t.datetime "created_at"
     t.text     "object_changes"
+    t.datetime "created_at"
     t.integer  "transaction_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
   end
 
   add_foreign_key "attachments", "items"
+  add_foreign_key "item_relationships", "items"
+  add_foreign_key "item_relationships", "items", column: "parent_id"
   add_foreign_key "items", "companies"
   add_foreign_key "users", "companies"
 end

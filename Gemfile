@@ -3,11 +3,13 @@ ruby '2.3.3'
 gem 'dotenv-rails'
 gem 'rails', '~> 5.0.2', '>= 5.0.2'
 gem 'pg'
+gem 'haml'
 gem 'puma'
 gem 'redis'
 gem 'devise'
-gem 'bcrypt', '~> 3.1.11'
+#gem 'bcrypt'
 gem 'pundit'
+gem 'cancancan'
 gem 'rqrcode'
 gem 'uglifier'
 gem 'jbuilder'
@@ -43,13 +45,17 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'active_material', github: 'vigetlabs/active_material'
 gem 'activeadmin_addons'
-gem 'select2-rails'
+gem 'select2-rails'#, '~> 4.0', '>= 4.0.3'
 gem 'activeadmin_latlng', github: 'cmelgarejo/activeadmin-latlng'
 gem 'cocoon'
 gem 'activeadmin-ajax_filter'
 gem 'jquery-palette-color-picker-rails', github: 'cmelgarejo/jquery-palette-color-picker-rails', platform: :ruby if Gem.win_platform?
+#gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'n-select
 
 #gem 'formadmin'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary' if !Gem.win_platform?
+gem 'wkhtmltopdf-heroku' if !Gem.win_platform?
 
 group :development, :test do
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?

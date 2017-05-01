@@ -6,8 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 company = CreateCompanyService.new.call
-ap 'CREATED ADMIN COMPANY: ' << company.name
-user = CreateAdminService.new.call(company.id)
+ap "CREATED ADMIN COMPANY: #{company.name}"
+ap 'CREATING ROLES:'
+roles = CreateRolesService.new.call
+user = CreateAdminService.new.call(company.id, roles)
 ap "CREATED ADMIN USER: #{user.name} - #{user.email}"
 ap 'CREATING TEST ITEMS'
 item1 = CreateItemService.new.call(company.id, 'Item 1', { fibra: nil }, true)

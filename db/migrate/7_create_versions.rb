@@ -19,6 +19,7 @@ class CreateVersions < ActiveRecord::Migration
       t.string   :event,     null: false
       t.string   :whodunnit
       t.text     :object, limit: TEXT_BYTES
+      t.text     :object_changes, limit: TEXT_BYTES
 
       # Known issue in MySQL: fractional second precision
       # -------------------------------------------------

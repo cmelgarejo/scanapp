@@ -6,8 +6,12 @@ class ApplicationController < ActionController::Base
   #before_action :reload_rails_admin, if: :rails_admin_path?
   before_action :set_paper_trail_whodunnit
 
+  def access_denied(exception)
+    redirect_to root_path, alert: exception.message
+  end
+
   def peek_enabled?
-    current_user.try(:admin?)
+    current_user.has_role? 'admin' if current_user
   end
 
   protected
@@ -18,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_for_paper_trail
-    current_user.try(:admin?) ? current_user.try(:id) : 1
+    current_user && current_user.has_role?('admin') ? current_user.try(:id) : 1
   end
 
   # def reload_rails_admin

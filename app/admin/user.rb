@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
-  permit_params :name, :email, :password
+  permit_params :name, :email, :password, :roles, :company_id, :role_ids
+  actions :all, :except => [:show]
 
   menu label: I18n.t('Users')
 
@@ -7,10 +8,11 @@ ActiveAdmin.register User do
     title I18n.t('Users')
     selectable_column
     id_column
-    column I18n.t('Name') do |item|
-      link_to item.name, admin_user_path(item)
+    column I18n.t('Name') do |user|
+      link_to user.name, edit_admin_user_path(user)
     end
     column :email
+    list_column :my_roles
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -61,9 +63,16 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :password
+      f.input :roles, as: :select, label: I18n.t('Roles'), include_blank: false, input_html: {class: 'select2'}
       f.input :company_id, as: :select, collection: Company.all
     end
     f.actions
+  end
+
+  controller do
+    def permitted_params
+      params.permit!
+    end
   end
 
 end

@@ -1,0 +1,8 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+%ul
+  %li
+    = "#{I18n.t('Item')}: #{resource.label}"
+  %li
+    = "#{I18n.t('Description')}: #{resource.description}"
+%div{ style: "border-left: 25px solid #{resource.color_reference};margin-top:50px;margin-bottom:50px" }
+  = image_tag RQRCode::QRCode.new(resource.id, :size => 8, :level => :h).as_png.to_data_url

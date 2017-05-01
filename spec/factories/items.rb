@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :item do
+  factory :items do
     label "MyText"
     qrcode "MyText"
     properties ""

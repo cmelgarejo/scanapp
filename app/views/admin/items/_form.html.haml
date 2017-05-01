@@ -1,0 +1,53 @@
+= semantic_form_for [:admin, @item], builder: ActiveAdmin::FormBuilder do |f|
+  = f.actions do
+    = f.action :submit, label: I18n.t('save')
+    = cancel_link
+  = tabs do
+    = tab I18n.t('Item_Details') do
+      = f.inputs I18n.t('Item_Details') do
+        = f.input :label, as: :string, label: I18n.t('Label')
+        = f.input :description, label: I18n.t('Description')
+        = f.input :color_reference, as: :color_picker, label: I18n.t('Color_Reference')
+        = f.input :lat, label: I18n.t('Latitude')
+        = f.input :lng, label: I18n.t('Longitude')
+        = f.latlng lang: :es, map: :yandex, id_lng: 'item_lng', start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng # add this
+        = f.input :enabled, label: I18n.t('Enabled')
+  -## form do |f|
+  -##   f.actions d
+  -##     f.action :submit, label: I18n.t('save')
+  -##     cancel_link
+  -##   end
+  -##   tabs do
+  -##     tab I18n.t('Item_Details') do
+  -##       f.inputs I18n.t('Item_Details') do
+  -##         f.input :label, as: :string, label: I18n.t('Label')
+  -##         f.input :description, label: I18n.t('Description')
+  -##         f.input :color_reference, as: :color_picker, label: I18n.t('Color_Reference')
+  -##         f.input :lat, label: I18n.t('Latitude')
+  -##         f.input :lng, label: I18n.t('Longitude')
+  -##         f.latlng lang: :es, map: :yandex, id_lng: 'item_lng', start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng # add this
+  -##         f.input :enabled, label: I18n.t('Enabled')
+  -##         #f.input :template, as: :select, collection: Items.all
+  -##       end
+  -##     end
+  -##     tab I18n.t('Associations') do
+  -##       f.inputs do
+  -##         f.has_many :parents, heading: false, allow_destroy: true do |item|
+  -##           item.input :parents, as: :select, collection: Item.pluck(:label, :id), multiple: false, input_html: { class: 'select2' }
+  -##         end
+  -##       end
+  -##     end
+  -##     tab I18n.t('Attachments') do
+  -##       f.has_many :attachment, heading: false, allow_destroy: true, as: :grid do |ff|
+  -##         ff.input :path, label: I18n.t('Attachment'), as: :file, hint:
+  -##             (ff.object.path.present? ?
+  -##                 ((%w(jpg jpeg gif png).map { |r| ff.object.path.url.include?(r) }.inject(&:|)) ?
+  -##                     image_tag(ff.object.path.url, class: 'thumbnail')
+  -##                 :
+  -##                     build_hint_file(ff.object.path.file.original_filename, ff.object.path))
+  -##             :
+  -##                 content_tag(:span, I18n.t('no_file')))
+  -##       end
+  -##     end
+  -##   end
+  -## end

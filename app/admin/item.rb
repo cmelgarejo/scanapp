@@ -11,16 +11,21 @@ ActiveAdmin.register Item do
       link_to item.label, admin_item_path(item)
     end
     column I18n.t('QRCode') do |item|
-      link_to image_tag(RQRCode::QRCode.new(item.id, :size => 8, :level => :h).as_png.to_data_url), admin_item_path(item)
+      raw "<div style='border-left: 25px solid #{item.color_reference};margin-top:50px;margin-bottom:50px'>
+          #{link_to image_tag(RQRCode::QRCode.new(item.id, :size => 8, :level => :h).as_png.to_data_url),
+                    admin_item_path(item)}</div>"
+
     end
     column I18n.t('Description'), :description
     column I18n.t('Color_Reference') do |item|
-      raw "<div style='background-color: #{item.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{item.color_reference}'></span>"
+      raw "<div style='background-color: #{item.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{item.color_reference}'></div>"
     end
     bool_column I18n.t('Enabled'), :enabled
     column I18n.t('Created_at'), :created_at
     column I18n.t('Updated_at'), :updated_at
-    actions
+    actions defaults: true do |item|
+      link_to I18n.t('Print'), "#{admin_item_path(item)}/pdf", target: '_blank'
+    end
   end
 
   filter :label
@@ -34,7 +39,9 @@ ActiveAdmin.register Item do
       tab I18n.t('Item_Details') do
         attributes_table do
           row I18n.t('QRCode') do
-            image_tag RQRCode::QRCode.new(resource.id, :size => 8, :level => :h).as_png.to_data_url
+            raw "<div style='border-left: 25px solid #{resource.color_reference};margin-top:50px;margin-bottom:50px'>
+          #{link_to image_tag(RQRCode::QRCode.new(resource.id, :size => 8, :level => :h).as_png.to_data_url),
+                    admin_item_path(resource)}</div>"
           end
           row I18n.t('Label') do
             resource.label
@@ -66,9 +73,8 @@ ActiveAdmin.register Item do
               ''
             else
               attributes_table_for resource do
-                row parent.description do
-                  #puts build_label(att.path.file.original_filename, I18n.t('Download'))
-                  a(parent.label, href: admin_item_path(parent), class: 'attachment-link', target: '_blank')
+                row I18n.t('Item') do
+                  (a(parent.label, href: admin_item_path(parent), class: 'attachment-link', target: '_blank'))
                 end
                 nil
               end
@@ -78,13 +84,14 @@ ActiveAdmin.register Item do
       end
       tab I18n.t('Attachments') do
         panel I18n.t('Attachments') do
-          item.attachment.each do |att|
-            attributes_table_for resource do
-              row att.path.file.original_filename do
-                #puts build_label(att.path.file.original_filename, I18n.t('Download'))
-                a(build_label(att.path.file.original_filename), href: att.path, class: 'attachment-link', target: '_blank')
+          if (!item.attachment.nil?)
+            item.attachment.each do |att|
+              attributes_table_for resource do
+                row att.path.file.original_filename do
+                  a(build_label(att.path.file.original_filename), href: att.path, class: 'attachment-link', target: '_blank')
+                end
+                nil
               end
-              nil
             end
           end
         end
@@ -92,6 +99,7 @@ ActiveAdmin.register Item do
     end
   end
 
+  #form partial: 'form'
   form do |f|
     f.actions do
       f.action :submit, label: I18n.t('save')
@@ -107,14 +115,11 @@ ActiveAdmin.register Item do
           f.input :lng, label: I18n.t('Longitude')
           f.latlng lang: :es, map: :yandex, id_lng: 'item_lng', start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng # add this
           f.input :enabled, label: I18n.t('Enabled')
-          #f.input :template, as: :select, collection: Items.all
         end
       end
       tab I18n.t('Associations') do
         f.inputs do
-          f.has_many :parents, heading: false, new_record: false, allow_destroy: true do |item|
-            item.input :parents, as: :select, collection: Item.pluck(:label, :id)
-          end
+          f.input :parents, as: :select, collection: Item.pluck(:label, :id), label: I18n.t('Parents'), include_blank: false, input_html: {class: 'select2'}
         end
       end
       tab I18n.t('Attachments') do
@@ -136,6 +141,19 @@ ActiveAdmin.register Item do
     def permitted_params
       params.permit!
     end
+
   end
+
+  member_action :pdf, method: :get do
+    render(pdf: "item-#{resource.id}.pdf")
+  end
+
+  action_item :view, only: [:show, :edit] do
+    link_to I18n.t('Print'), "#{admin_item_path(resource)}/pdf", target: '_blank'
+  end
+
+  # actions defaults: false do |item|
+  #   #link_to I18n.t('Print'), "#{admin_item_path(resource)}/pdf", target: '_blank'
+  # end
 
 end

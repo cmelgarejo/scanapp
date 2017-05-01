@@ -9,6 +9,8 @@
 
 // Active Admin's got SASS!
 //= require activeadmin_addons/all
+//= require select2
+//= require select2-bootstrap
 //@import "bootstrap-sprockets";
 //@import "bootstrap";
 
@@ -26,6 +28,11 @@
 //
 //   .status_tag { background: #6090DB; }
 //menu-button
+
+.select2-container {
+  width: 100%;
+}
+
 li.cancel a:hover a:focus {
   color: $am-theme-text-reverse !important;
 }
