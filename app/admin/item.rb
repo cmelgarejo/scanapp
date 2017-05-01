@@ -37,6 +37,9 @@ ActiveAdmin.register Item do
   filter :updated_at
 
   show do
+    within @head do
+      script src: 'https://api-maps.yandex.ru/2.1/?lang=es&load=Map,Placemark', type: 'text/javascript'
+    end
     tabs do
       tab I18n.t('Item_Details') do
         attributes_table do
@@ -106,6 +109,9 @@ ActiveAdmin.register Item do
 
   #form partial: 'form'
   form do |f|
+    # within @head do
+    #   script src: 'https://api-maps.yandex.ru/2.1/?lang=es&load=Map,Placemark', type: 'text/javascript'
+    # end
     f.actions do
       f.action :submit, label: I18n.t('save')
       cancel_link
