@@ -21,6 +21,7 @@ ActiveAdmin.register Item do
       raw "<div style='background-color: #{item.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{item.color_reference}'></div>"
     end
     bool_column I18n.t('Enabled'), :enabled
+    #bool_column I18n.t('IsRootItem'), :is_root
     column I18n.t('Created_at'), :created_at
     column I18n.t('Updated_at'), :updated_at
     actions defaults: true do |item|
@@ -31,6 +32,7 @@ ActiveAdmin.register Item do
   filter :label
   filter :description
   filter :enabled
+  filter :is_root, label: I18n.t('IsRootItem')
   filter :created_at
   filter :updated_at
 
@@ -48,6 +50,9 @@ ActiveAdmin.register Item do
           end
           row I18n.t('Description') do
             resource.description
+          end
+          bool_row I18n.t('IsRootItem') do
+            resource.is_root
           end
           bool_row I18n.t('Enabled') do
             resource.enabled
@@ -119,7 +124,8 @@ ActiveAdmin.register Item do
       end
       tab I18n.t('Associations') do
         f.inputs do
-          f.input :parents, as: :select, collection: Item.pluck(:label, :id), label: I18n.t('Parents'), include_blank: false, input_html: {class: 'select2'}
+          f.input :is_root, label: I18n.t('IsRootItem')
+          f.input :parents, as: :select, collection: Item.where.not(id: item.id).pluck(:label, :id), label: I18n.t('Parents'), include_blank: false, input_html: {class: 'select2'}
         end
       end
       tab I18n.t('Attachments') do

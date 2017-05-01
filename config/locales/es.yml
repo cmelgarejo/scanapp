@@ -45,6 +45,7 @@ es:
   remove: Eliminar
   Print: Imprimir
   Roles: Roles de Usuario
+  IsRootItem: Es item "madre" o base
   activerecord:
       attributes:
         user:
@@ -61,6 +62,7 @@ es:
           current_sign_in_ip: IP Actual de ingreso
           last_sign_in_ip: Última IP de ingreso
           my_roles: Roles
+          is_root: Es item base
         company:
           name: Nombre
           enabled: Activo

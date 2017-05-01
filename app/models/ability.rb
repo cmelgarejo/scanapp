@@ -9,7 +9,7 @@ class Ability
     if user.has_role?(:editor)
       can :manage, Item
     end
-    if user.has_role?(:user)
+    if user.has_role?(:user) && !user.has_role?(:admin)
       can :read, :all
       cannot :read, [Company, User]
     end
