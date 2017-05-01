@@ -57,6 +57,8 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary' if !Gem.win_platform?
 gem 'wkhtmltopdf-heroku' if !Gem.win_platform?
 
+gem 'awesome_print', require:'ap'
+
 group :development, :test do
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?
   gem 'faker'
