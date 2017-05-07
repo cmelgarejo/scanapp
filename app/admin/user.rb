@@ -63,8 +63,9 @@ ActiveAdmin.register User do
       f.input :name
       f.input :email
       f.input :password
-      f.input :roles, as: :select, label: I18n.t('Roles'), include_blank: false, input_html: {class: 'select2'}
       f.input :company_id, as: :select, collection: Company.all
+      f.input :roles, as: :select, label: I18n.t('Roles'), include_blank: false, input_html: {class: 'select2'}
+      f.input :categories, as: :select, label: I18n.t('Categories'), include_blank: false, input_html: {class: 'select2'}
     end
     f.actions
   end

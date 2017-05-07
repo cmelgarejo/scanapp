@@ -52,6 +52,9 @@ gem 'activeadmin-ajax_filter'
 gem 'jquery-palette-color-picker-rails', github: 'cmelgarejo/jquery-palette-color-picker-rails', platform: :ruby if Gem.win_platform?
 #gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'n-select
 
+gem 'chosen-rails'
+gem 'country_state_select', github: 'cmelgarejo/Country-State-Select'
+
 #gem 'formadmin'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary' if !Gem.win_platform?
@@ -82,7 +85,7 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'spring-commands-rspec'
   #gem 'rails-flog', require: 'flog'
-  gem 'awesome_print', require:'ap'
+  #gem 'awesome_print', require:'ap'
 end
 group :test do
   gem 'launchy'

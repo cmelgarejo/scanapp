@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
 
+  has_many :user_categories, dependent: :destroy
+  has_many :categories, through: :user_categories
+
   def has_role?(name)
     roles.pluck(:name).member?(name.to_s)
   end

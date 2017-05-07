@@ -4,6 +4,9 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.text :label, index: true
       t.text :description, index: true
       t.text :color_reference
+      t.text :country, index: true
+      t.text :state
+      t.text :city
       t.float :lat
       t.float :lng
       t.boolean :enabled, default: true
@@ -16,5 +19,8 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     execute 'CREATE INDEX index_items_latlng_spgist ON items USING spgist(point(lat, lng));'
+    add_index :items, :color_reference
+    add_index :items, [:country, :state]
+    add_index :items, [:country, :state, :city]
   end
 end

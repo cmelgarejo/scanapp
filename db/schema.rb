@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 12) do
+ActiveRecord::Schema.define(version: 15) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 12) do
     t.index ["item_id"], name: "index_attachments_on_item_id", using: :btree
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -45,6 +52,16 @@ ActiveRecord::Schema.define(version: 12) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["name"], name: "index_companies_on_name", using: :btree
+  end
+
+  create_table "item_categories", force: :cascade do |t|
+    t.uuid     "item_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_item_categories_on_category_id", using: :btree
+    t.index ["item_id", "category_id"], name: "index_item_categories_on_item_id_and_category_id", unique: true, using: :btree
+    t.index ["item_id"], name: "index_item_categories_on_item_id", using: :btree
   end
 
   create_table "item_relationships", id: false, force: :cascade do |t|
@@ -60,6 +77,9 @@ ActiveRecord::Schema.define(version: 12) do
     t.text     "label"
     t.text     "description"
     t.text     "color_reference"
+    t.text     "country"
+    t.text     "state"
+    t.text     "city"
     t.float    "lat"
     t.float    "lng"
     t.boolean  "enabled",          default: true
@@ -70,7 +90,11 @@ ActiveRecord::Schema.define(version: 12) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index "point(lat, lng)", name: "index_items_latlng_spgist", using: :spgist
+    t.index ["color_reference"], name: "index_items_on_color_reference", using: :btree
     t.index ["company_id"], name: "index_items_on_company_id", using: :btree
+    t.index ["country", "state", "city"], name: "index_items_on_country_and_state_and_city", using: :btree
+    t.index ["country", "state"], name: "index_items_on_country_and_state", using: :btree
+    t.index ["country"], name: "index_items_on_country", using: :btree
     t.index ["description"], name: "index_items_on_description", using: :btree
     t.index ["label"], name: "index_items_on_label", using: :btree
   end
@@ -79,6 +103,16 @@ ActiveRecord::Schema.define(version: 12) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_categories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_user_categories_on_category_id", using: :btree
+    t.index ["user_id", "category_id"], name: "index_user_categories_on_user_id_and_category_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_user_categories_on_user_id", using: :btree
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -134,6 +168,7 @@ ActiveRecord::Schema.define(version: 12) do
   end
 
   add_foreign_key "attachments", "items"
+  add_foreign_key "item_categories", "items"
   add_foreign_key "item_relationships", "items"
   add_foreign_key "item_relationships", "items", column: "parent_id"
   add_foreign_key "items", "companies"

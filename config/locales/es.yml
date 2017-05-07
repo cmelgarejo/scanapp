@@ -45,7 +45,12 @@ es:
   remove: Eliminar
   Print: Imprimir
   Roles: Roles de Usuario
+  Categories: Categorías
   IsRootItem: Es item "madre" o base
+  Country: Pais
+  State: Region
+  City: Ciudad
+  category_details: Detalles de Categoría
   activerecord:
       attributes:
         user:

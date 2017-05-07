@@ -13,6 +13,9 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :attachment, allow_destroy: true
   accepts_nested_attributes_for :parents, allow_destroy: true
 
+  has_many :item_categories, dependent: :destroy
+  has_many :categories, through: :item_categories
+
   # def extra_properties
   #   require 'json'
   #   JSON.parse(self.extra_properties)

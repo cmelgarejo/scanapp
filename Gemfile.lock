@@ -28,6 +28,14 @@ GIT
       responders
 
 GIT
+  remote: git://github.com/cmelgarejo/Country-State-Select.git
+  revision: df934e2b345cc962c77aeb50184c4874f975cb61
+  specs:
+    country_state_select (3.0.2)
+      city-state
+      rails
+
+GIT
   remote: git://github.com/cmelgarejo/activeadmin-latlng.git
   revision: c5ea4cb6bee730ac52cc36111966dad4c5c720fe
   specs:
@@ -134,7 +142,13 @@ GEM
       mime-types (>= 1.16)
     childprocess (0.6.3)
       ffi (~> 1.0, >= 1.0.11)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     chunky_png (1.3.8)
+    city-state (0.0.13)
+      rubyzip (~> 1.1)
     cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -462,8 +476,10 @@ DEPENDENCIES
   cancancan
   capybara
   carrierwave
+  chosen-rails
   cocoon
   coffee-rails
+  country_state_select!
   database_cleaner
   devise
   devise-i18n
