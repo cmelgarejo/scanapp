@@ -19,6 +19,10 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     execute 'CREATE INDEX index_items_latlng_spgist ON items USING spgist(point(lat, lng));'
+    #SELECT *
+    # FROM   point
+    # WHERE  '(47.606977, -122.232991), (47.506977, -122.338991)'::box
+    # @> point(lat, lng);
     add_index :items, :color_reference
     add_index :items, [:country, :state]
     add_index :items, [:country, :state, :city]

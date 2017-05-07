@@ -13,6 +13,7 @@ ActiveAdmin.register User do
     end
     column :email
     list_column :my_roles
+    list_column :my_categories
     column :current_sign_in_at
     column :sign_in_count
     column :created_at

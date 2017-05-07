@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   ROLES = %w[admin moderator author banned].freeze
+  #has_secure_password
   has_paper_trail
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -25,6 +26,10 @@ class User < ApplicationRecord
 
   def my_roles
     self.roles.map(&:name)
+  end
+
+  def my_categories
+    self.categories.map(&:name)
   end
 
   def set_default_role

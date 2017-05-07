@@ -9,7 +9,7 @@
 #= require chosen-jquery
 $(document).ready ->
   $('.color-picker').paletteColorPicker()
-  $( ".select2" ).select2({theme: "bootstrap"}) if window.location.pathname.match(/(items\/.*\/edit|users\/.*\/edit)/)?
+  $( ".select2" ).select2({theme: "bootstrap"}) if window.location.pathname.match(/(items\/.*\/edit|users\/.*\/edit|items\/new|users\/new)/)?
   CountryStateSelect({
     country_id: "item_country", state_id: "item_state", city_id: "item_city",
     chosen_ui: true,

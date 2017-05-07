@@ -9,6 +9,7 @@ company = CreateCompanyService.new.call
 ap "CREATED ADMIN COMPANY: #{company.name}"
 ap 'CREATING ROLES:'
 roles = CreateRolesService.new.call
+ap 'CREATING CATEGORIES:'
 categories = CreateCategoryService.new.call
 
 user = CreateAdminService.new.call(company.id, roles, [categories[0]])

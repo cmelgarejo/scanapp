@@ -4,6 +4,10 @@
     # :company,
     # :item
 
+    before_create do |item|
+      item.company = current_user.company
+    end
+
     index do
       selectable_column
       #id_column
@@ -17,6 +21,7 @@
 
       end
       column I18n.t('Description'), :description
+      list_column :my_categories
       column I18n.t('Color_Reference') do |item|
         raw "<div style='background-color: #{item.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{item.color_reference}'></div>"
       end
@@ -158,7 +163,6 @@
       def permitted_params
         params.permit!
       end
-
     end
 
     member_action :pdf, method: :get do

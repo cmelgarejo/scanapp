@@ -2,15 +2,21 @@ class Api::V1::ItemsController < ApiController
   before_action :set_resource, only: [:show]
 
   def index
-    json_response Item.where(enabled: true), except: item_list_except_fields
+    list = Item.includes(:item_categories)
+               .where(enabled: true,
+                      item_categories: { category_id: current_user.categories.map(&:id)}) #has my current categories
+    box = params[:box] if /\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\),\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\)/.match(params[:box])#if there's a bounding box, filter the items by that.
+    list.where!([':box::box @> point(lat, lng)', {box: box}]) if box
+    json_response list, except: item_list_except_fields
   end
 
   def show
     json_response @resource, include: {
           attachment: {except: attachment_except_fields},
           company: {except: company_except_fields},
-          template: {except: template_except_fields},
-          parents: {except: parents_except_fields}
+          #template: {except: template_except_fields},
+          parents: {except: parents_except_fields},
+          categories: {except: categories_except_fields}
         }, except: item_except_fields
   end
 
@@ -21,7 +27,11 @@ class Api::V1::ItemsController < ApiController
   end
 
   def parents_except_fields
-    (template_except_fields << :extra_properties).flatten
+    (template_except_fields << %w(extra_properties)).flatten
+  end
+
+  def categories_except_fields
+    (template_except_fields << %w(extra_properties)).flatten
   end
 
   def attachment_except_fields
@@ -29,7 +39,7 @@ class Api::V1::ItemsController < ApiController
   end
 
   def company_except_fields
-    (generic_except_fields << :enabled).flatten
+    (generic_except_fields << %w(enabled)).flatten
   end
 
   def generic_except_fields
@@ -46,7 +56,9 @@ class Api::V1::ItemsController < ApiController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_resource
-    @resource = Item.where(enabled: true, id: params[:id])
+    @resource = Item.includes(:item_categories)
+                    .where(id: params[:id], enabled: true,
+                           item_categories: { category_id: current_user.categories.map(&:id)}) #has my current categories
   end
 end
 

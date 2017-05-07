@@ -16,6 +16,14 @@ class Item < ApplicationRecord
   has_many :item_categories, dependent: :destroy
   has_many :categories, through: :item_categories
 
+  def my_categories
+    self.categories.map(&:name)
+  end
+
+  def my_categories?(have_any_of_these)
+    ap self.categories & have_any_of_these
+    self if self.categories & have_any_of_these
+  end
   # def extra_properties
   #   require 'json'
   #   JSON.parse(self.extra_properties)
