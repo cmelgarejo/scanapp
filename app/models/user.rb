@@ -14,6 +14,9 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :locations
+  accepts_nested_attributes_for :locations, allow_destroy: true
+
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
 

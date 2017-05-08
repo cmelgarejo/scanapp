@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       resources :items
       resources :companies
       post 'authenticate', to: 'authentication#authenticate'
+      get 'countries', to: 'locations#countries'
+      get 'states', to: 'locations#states'
+      get 'cities', to: 'locations#cities'
     end
   end
 

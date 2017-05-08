@@ -19,3 +19,13 @@ $(document).ready ->
       city_place_holder: "Selecciona una ciudad", state_place_holder: 'Selecciona una región'
     }
   })
+  #TODO: hacer un query dinamico para que se vaya agregando el nested attributes de user_location
+  CountryStateSelect({
+    country_id: "user_locations_attributes_0_country", state_id: "user_locations_attributes_0_state", city_id: "user_locations_attributes_0_city",
+    chosen_ui: true,
+    chosen_options: {
+      disable_search_threshold: 10,
+      width: '65%',
+      city_place_holder: "Selecciona una ciudad", state_place_holder: 'Selecciona una región'
+    }
+  })

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 15) do
+ActiveRecord::Schema.define(version: 16) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,19 @@ ActiveRecord::Schema.define(version: 15) do
     t.index ["country"], name: "index_items_on_country", using: :btree
     t.index ["description"], name: "index_items_on_description", using: :btree
     t.index ["label"], name: "index_items_on_label", using: :btree
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "country"
+    t.text     "state"
+    t.text     "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "country", "state", "city"], name: "index_locations_on_user_id_and_country_and_state_and_city", using: :btree
+    t.index ["user_id", "country", "state"], name: "index_locations_on_user_id_and_country_and_state", using: :btree
+    t.index ["user_id", "country"], name: "index_locations_on_user_id_and_country", using: :btree
+    t.index ["user_id"], name: "index_locations_on_user_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|
