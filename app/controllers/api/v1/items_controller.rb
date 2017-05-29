@@ -6,13 +6,13 @@ class Api::V1::ItemsController < ApiController
                .where(enabled: true,
                       item_categories: {category_id: current_user.categories.map(&:id)}) #has my current categories
     box = params[:box] if /\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\),\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\)/.match(params[:box]) #if there's a bounding box, filter the items by that.
-    country = params[:country]
-    state = params[:state]
-    city= params[:city]
-    list.where!(country: country) if country && state.nil? && city.nil?
-    list.where!(country: country, city: city) if country && state.nil? && city
-    list.where!(country: country, state: state) if country && state && city.nil?
-    list.where!(country: country, state: state, city: city) if country && state && city
+    # country = params[:country]
+    # state = params[:state]
+    # city= params[:city]
+    # list.where!(country: country) if country && state.nil? && city.nil?
+    # list.where!(country: country, city: city) if country && state.nil? && city
+    # list.where!(country: country, state: state) if country && state && city.nil?
+    # list.where!(country: country, state: state, city: city) if country && state && city
     list.where!([':box::box @> point(lat, lng)', {box: box}]) if box
     json_response list, except: item_list_except_fields
   end
@@ -54,11 +54,11 @@ class Api::V1::ItemsController < ApiController
   end
 
   def item_except_fields
-    %w(qrcode company_id item_id)
+    %w(qrcode company_id item_id country state city)
   end
 
   def item_list_except_fields
-    (item_except_fields << generic_except_fields << %w(enabled is_template is_root extra_properties lat lng)).flatten
+    (item_except_fields << generic_except_fields << %w(country state city enabled is_template is_root extra_properties lat lng)).flatten
   end
 
   # Use callbacks to share common setup or constraints between actions.

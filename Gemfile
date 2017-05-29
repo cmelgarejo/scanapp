@@ -43,19 +43,19 @@ gem 'peek-pg'
 gem 'peek-redis'
 gem 'peek-gc'
 
-gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'active_material', github: 'vigetlabs/active_material'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+gem 'active_material', git: 'https://github.com/vigetlabs/active_material'
 gem 'activeadmin_addons'
 gem 'select2-rails'#, '~> 4.0', '>= 4.0.3'
-gem 'activeadmin_latlng', github: 'cmelgarejo/activeadmin-latlng'
+gem 'activeadmin_latlng', git: 'https://github.com/cmelgarejo/activeadmin-latlng'
 gem 'cocoon'
 gem 'activeadmin-ajax_filter'
-gem 'jquery-palette-color-picker-rails', github: 'cmelgarejo/jquery-palette-color-picker-rails', platform: :ruby if Gem.win_platform?
-#gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'n-select
+gem 'jquery-palette-color-picker-rails', git: 'https://github.com/cmelgarejo/jquery-palette-color-picker-rails', platform: :ruby if Gem.win_platform?
+#gem 'activeadmin-select2', git: 'https://github.com/mfairburn/activeadmin-select2'n-select
 
 gem 'chosen-rails'
-gem 'country_state_select', github: 'cmelgarejo/Country-State-Select'
+gem 'country_state_select', git: 'https://github.com/cmelgarejo/Country-State-Select'
 
 #gem 'formadmin'
 gem 'wicked_pdf'

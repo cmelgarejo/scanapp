@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/activeadmin/activeadmin.git
-  revision: adcc7e379d1a3f2fab478f0b5c4d11af1bf488ea
+  remote: https://github.com/activeadmin/activeadmin
+  revision: d941aaa88c6e9011f7e9d1c7d85b2cd871160f0f
   specs:
     activeadmin (1.0.0)
       arbre (>= 1.1.1)
@@ -18,8 +18,8 @@ GIT
       sprockets (< 4.1)
 
 GIT
-  remote: git://github.com/activeadmin/inherited_resources.git
-  revision: 2c6c8caeeb2fe6d3ae8aabc138bf7ea08e781b9b
+  remote: https://github.com/activeadmin/inherited_resources
+  revision: 398a3bf731d101d26064467ead6a101d825cc02c
   specs:
     inherited_resources (1.7.2)
       actionpack (>= 3.2, < 5.2.x)
@@ -28,7 +28,7 @@ GIT
       responders
 
 GIT
-  remote: git://github.com/cmelgarejo/Country-State-Select.git
+  remote: https://github.com/cmelgarejo/Country-State-Select
   revision: df934e2b345cc962c77aeb50184c4874f975cb61
   specs:
     country_state_select (3.0.2)
@@ -36,28 +36,28 @@ GIT
       rails
 
 GIT
-  remote: git://github.com/cmelgarejo/activeadmin-latlng.git
+  remote: https://github.com/cmelgarejo/activeadmin-latlng
   revision: c5ea4cb6bee730ac52cc36111966dad4c5c720fe
   specs:
     activeadmin_latlng (0.1.0)
       activeadmin
 
 GIT
-  remote: git://github.com/cmelgarejo/jquery-palette-color-picker-rails.git
+  remote: https://github.com/cmelgarejo/jquery-palette-color-picker-rails
   revision: e89e806d959cb5e1550c1340196d1bb868e71ca0
   specs:
-
-GIT
-  remote: git://github.com/vigetlabs/active_material.git
-  revision: 853c60a22be2f6a57163a9d762da50c40e2061ec
-  specs:
-    active_material (1.4.1)
 
 GIT
   remote: https://github.com/codahale/bcrypt-ruby.git
   revision: 23b0517e20e7ddf2e733c1bcdb22b0b12166f042
   specs:
     bcrypt (3.1.11)
+
+GIT
+  remote: https://github.com/vigetlabs/active_material
+  revision: 853c60a22be2f6a57163a9d762da50c40e2061ec
+  specs:
+    active_material (1.4.1)
 
 GEM
   remote: https://rubygems.org/

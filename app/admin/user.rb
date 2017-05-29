@@ -60,34 +60,46 @@ ActiveAdmin.register User do
   # end
 
   form do |f|
-    f.actions do
-      f.action :submit, label: I18n.t('save')
-      cancel_link
+    f.inputs t('user_details') do
+      f.input :name
+      f.input :email
+      f.input :password
+      f.input :company_id, as: :select, collection: Company.all
+      f.input :roles, as: :select, label: I18n.t('Roles'), include_blank: false, input_html: {class: 'select2'}
+      f.input :categories, as: :select, label: I18n.t('Categories'), include_blank: false, input_html: {class: 'select2'}
     end
-    tabs do
-      tab I18n.t('user_details') do
-        f.inputs do
-          f.input :name
-          f.input :email
-          f.input :password
-          f.input :company_id, as: :select, collection: Company.all
-          f.input :roles, as: :select, label: I18n.t('Roles'), include_blank: false, input_html: {class: 'select2'}
-          f.input :categories, as: :select, label: I18n.t('Categories'), include_blank: false, input_html: {class: 'select2'}
-        end
-      end
-      tab I18n.t('Associations') do
-        f.inputs do
-          #TODO: hacer un query dinamico para que se vaya agregando el nested attributes de user_location
-          f.has_many :locations, heading: false, allow_destroy: true, as: :grid do |ff|
-            ff.input :country, as: :select, include_blank: false, label: I18n.t('Country'), collection: CountryStateSelect.countries_collection
-            ff.input :state, as: :select, include_blank: false, label: I18n.t('State'), options: CountryStateSelect.state_options(form: ff, field_names: {country: :country, state: :state})
-            ff.input :city, as: :select, include_blank: false, options: CountryStateSelect.city_options(form: ff, field_names: {:state => :state, :city => :city})
-          end
-        end
-      end
-      f.actions
-    end
+    f.actions
   end
+
+  # form do |f|
+  #   f.actions do
+  #     f.action :submit, label: I18n.t('save')
+  #     cancel_link
+  #   end
+  #   tabs do
+  #     tab I18n.t('user_details') do
+  #       f.inputs do
+  #         f.input :name
+  #         f.input :email
+  #         f.input :password
+  #         f.input :company_id, as: :select, collection: Company.all
+  #         f.input :roles, as: :select, label: I18n.t('Roles'), include_blank: false, input_html: {class: 'select2'}
+  #         f.input :categories, as: :select, label: I18n.t('Categories'), include_blank: false, input_html: {class: 'select2'}
+  #       end
+  #     end
+  #     tab I18n.t('Associations') do
+  #       f.inputs do
+  #         #Hacer un query dinamico para que se vaya agregando el nested attributes de user_location
+  #         f.has_many :locations, heading: false, allow_destroy: true, as: :grid do |ff|
+  #           ff.input :country, as: :select, include_blank: false, label: I18n.t('Country'), collection: CountryStateSelect.countries_collection
+  #           ff.input :state, as: :select, include_blank: false, label: I18n.t('State'), options: CountryStateSelect.state_options(form: ff, field_names: {country: :country, state: :state})
+  #           ff.input :city, as: :select, include_blank: false, options: CountryStateSelect.city_options(form: ff, field_names: {:state => :state, :city => :city})
+  #         end
+  #       end
+  #     end
+  #     f.actions
+  #   end
+  # end
 
   controller do
     def permitted_params
