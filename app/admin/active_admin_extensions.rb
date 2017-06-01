@@ -16,7 +16,7 @@ module ActiveAdminAddons
         mpeg mpg msi mswmm ogg pdf png pps ppt pptx ps psd pst ptb pub qbb qbw qxd ram
         rar rm rmvb rtf sea ses sit sitx ss swf tgz thm tif tmp torrent ttf txt
         vcd vob wav wma wmv wps xls xlsx xpi zip
-      } if KNOWN_EXTENSIONS == nil
+      }
 
       def icon_for_filename(filename)
         for_ext File.extname(filename.to_s)
