@@ -11,7 +11,7 @@
     index do
       selectable_column
       #id_column
-      column I18n.t('Label') do |item|
+      column I18n.t('Label'), sortable: :label do |item|
         link_to item.label, admin_item_path(item)
       end
       column I18n.t('QRCode') do |item|
@@ -22,10 +22,10 @@
       end
       column I18n.t('Description'), :description
       list_column :my_categories
-      column I18n.t('Color_Reference') do |item|
+      column I18n.t('Color_Reference'), sortable: :color_reference do |item|
         raw "<div style='background-color: #{item.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{item.color_reference}'></div>"
       end
-      bool_column I18n.t('Enabled'), :enabled
+      bool_column I18n.t('Enabled'), :enabled, sortable: :enabled
       #bool_column I18n.t('IsRootItem'), :is_root
       column I18n.t('Created_at'), :created_at
       column I18n.t('Updated_at'), :updated_at
@@ -36,6 +36,7 @@
 
     filter :label
     filter :description
+    # filter :color_reference
     filter :enabled
     filter :is_root, label: I18n.t('IsRootItem')
     filter :created_at
@@ -59,9 +60,9 @@
             row I18n.t('Description') do
               resource.description
             end
-            # bool_row I18n.t('IsRootItem') do
-            #   resource.is_root
-            # end
+            bool_row I18n.t('IsRootItem') do
+              resource.is_root
+            end
             bool_row I18n.t('Enabled') do
               resource.enabled
             end
@@ -153,7 +154,7 @@
         end
         tab I18n.t('Associations') do
           f.inputs do
-            # f.input :is_root, label: I18n.t('IsRootItem')
+            f.input :is_root, label: I18n.t('IsRootItem')
             f.input :children, as: :select, collection: Item.where.not(id: item.id).pluck(:label, :id), label: I18n.t('Children'), include_blank: false, input_html: {class: 'select2'}
             f.input :parents, as: :select, collection: Item.where.not(id: item.id).pluck(:label, :id), label: I18n.t('Parents'), include_blank: false, input_html: {class: 'select2'}
             f.input :categories, as: :select, label: I18n.t('Categories'), include_blank: false, input_html: {class: 'select2'}

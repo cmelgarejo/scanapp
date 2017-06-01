@@ -49,7 +49,7 @@ es:
   Print: Imprimir
   Roles: Roles de Usuario
   Categories: Categorías
-  IsRootItem: Es item "madre" o base
+  IsRootItem: Es item base
   Country: Pais
   State: Region
   City: Ciudad
