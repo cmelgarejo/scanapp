@@ -59,9 +59,9 @@
             row I18n.t('Description') do
               resource.description
             end
-            bool_row I18n.t('IsRootItem') do
-              resource.is_root
-            end
+            # bool_row I18n.t('IsRootItem') do
+            #   resource.is_root
+            # end
             bool_row I18n.t('Enabled') do
               resource.enabled
             end
@@ -88,6 +88,20 @@
                 attributes_table_for resource do
                   row I18n.t('Item') do
                     (a(parent.label, href: admin_item_path(parent), class: 'attachment-link', target: '_blank'))
+                  end
+                  nil
+                end
+              end
+            end
+          end
+          panel I18n.t('Children') do
+            item.children.each do |child|
+              if child.nil?
+                ''
+              else
+                attributes_table_for resource do
+                  row I18n.t('Item') do
+                    (a(child.label, href: admin_item_path(child), class: 'attachment-link', target: '_blank'))
                   end
                   nil
                 end
@@ -139,7 +153,8 @@
         end
         tab I18n.t('Associations') do
           f.inputs do
-            f.input :is_root, label: I18n.t('IsRootItem')
+            # f.input :is_root, label: I18n.t('IsRootItem')
+            f.input :children, as: :select, collection: Item.where.not(id: item.id).pluck(:label, :id), label: I18n.t('Children'), include_blank: false, input_html: {class: 'select2'}
             f.input :parents, as: :select, collection: Item.where.not(id: item.id).pluck(:label, :id), label: I18n.t('Parents'), include_blank: false, input_html: {class: 'select2'}
             f.input :categories, as: :select, label: I18n.t('Categories'), include_blank: false, input_html: {class: 'select2'}
           end

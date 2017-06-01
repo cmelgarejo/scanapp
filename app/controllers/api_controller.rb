@@ -8,6 +8,6 @@ class ApiController < ActionController::API
 
   def authenticate_request
     @current_user = AuthorizeApiRequest.call(request.headers).result
-    render json: { error: 'Not Authorized, BEGONE!' }, status: 401 unless @current_user
+    render json: { error: I18n.t('api.not_authorized') }, status: 401 unless @current_user
   end
 end

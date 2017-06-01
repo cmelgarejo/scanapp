@@ -46,7 +46,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    self.roles.include? 'admin'
+    self.my_roles.include? 'admin'
   end
 
 end

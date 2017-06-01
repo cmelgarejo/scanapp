@@ -1,5 +1,7 @@
 ---
 es:
+  api:
+    not_authorized: No estás autorizado
   document: Documento
   about: Acerca de
   edit_account: Editar Cuenta
@@ -40,7 +42,8 @@ es:
   save: Guardar
   last_20_items: Últimos 20 registros
   Associations: Asociaciones
-  Parents: Pertenece a
+  Parents: Pertenece a item(s)
+  Children: Items dependientes
   no_file: Aún no se ha subido ningún archivo.
   remove: Eliminar
   Print: Imprimir
