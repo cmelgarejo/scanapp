@@ -148,7 +148,11 @@
             f.input :color_reference, as: :color_picker, label: I18n.t('Color_Reference')
             f.input :lat, label: I18n.t('Latitude')
             f.input :lng, label: I18n.t('Longitude')
-            f.latlng lang: :es, map: :yandex, id_lat: 'item_lat', id_lng: 'item_lng', start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng, loading_map: false
+            #f.latlng lang: :es, map: :yandex, id_lat: 'item_lat', id_lng: 'item_lng', start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng, loading_map: false
+            f.latlng lang: :es, map: :google, id_lat: 'item_lat', id_lng: 'item_lng',
+                     start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng,
+                     loading_map: true,
+                     api_key: Rails.application.secrets.google_maps_api_key
             f.input :enabled, label: I18n.t('Enabled')
           end
         end
