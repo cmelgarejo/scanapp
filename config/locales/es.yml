@@ -95,6 +95,10 @@ es:
     messages:
       extension_whitelist_error: Formato no permitido
   active_admin:
+    filters:
+      predicates:
+        from: Desde
+        to: Hasta
     dashboard: Dashboard
     resources:
       attachment:

@@ -74,7 +74,7 @@
               #"#{resource.lat};#{resource.lng}"
               #Rails.application.secrets.google_maps_api_key
               if resource.lat && resource.lng
-                raw "<img style='max-width:1080px !important;background-color: border: 2px solid #{resource.color_reference}' src=\"https://maps.googleapis.com/maps/api/staticmap?center=#{resource.lat},#{resource.lng}&zoom=17&size=540x350&maptype=street&markers=color:blue|label:S|#{resource.lat},#{resource.lng}&key=#{Rails.application.secrets.google_maps_api_key}\"/>"
+                raw "<img style='max-width:1080px !important;background-color: border: 2px solid #{resource.color_reference}' src=\"https://maps.googleapis.com/maps/api/staticmap?center=#{resource.lat},#{resource.lng}&zoom=17&size=540x350&maptype=street&markers=color:blue|#{resource.lat},#{resource.lng}&key=#{Rails.application.secrets.google_maps_api_key}\"/>"
               else
                 raw "<div style='background-color: border: 2px solid #{resource.color_reference};' title='#{resource.color_reference}'>
                     </div>"
