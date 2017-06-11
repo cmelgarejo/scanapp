@@ -32,10 +32,12 @@ es:
   Label: Etiqueta
   Color_Reference: Color de Referencia
   Name: Nombre
+  Location: Ubicación
   Latitude: Latitud
   Longitude: Longitud
   Description: Descripción
   Enabled: Activo
+  Categories: Categorias
   Created_at: Creado
   Updated_at: Actualizado
   Download: Descargar
@@ -82,6 +84,8 @@ es:
           created_at: Fecha de Creación
           updated_at: Fecha de Actualización
           enabled: Activo
+          categories: Categoría
+          color_reference: Color de Referencia
           description: Descripción
           attachment: Archivo
         attachment:

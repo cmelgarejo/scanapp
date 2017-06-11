@@ -8,6 +8,14 @@
 #= require country_state_select
 #= require chosen-jquery
 $(document).ready ->
+  $('.color-reference-select > option').each((i, el) ->
+    $(el).css('background-color', el.innerHTML).css('color', el.innerHTML)
+  )
+  color = $('.color-reference-select option:selected')[0].innerHTML
+  $('.color-reference-select').css('background-color', color).css('color', color)
+  $('.color-reference-select').change ->
+    color = $('.color-reference-select option:selected')[0].innerHTML
+    $('.color-reference-select').css('background-color', color).css('color', color)
   $('.color-picker').paletteColorPicker()
   $( ".select2" ).select2({theme: "bootstrap"}) if window.location.pathname.match(/(items\/.*\/edit|users\/.*\/edit|items\/new|users\/new)/)?
   CountryStateSelect({

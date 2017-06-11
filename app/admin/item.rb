@@ -36,7 +36,8 @@
 
     filter :label
     filter :description
-    # filter :color_reference
+    filter :color_reference, as: :select, input_html: { class: "color-reference-select" } #collection: proc { Item.all.map(&:color_reference).uniq }
+    filter :categories, as: :select
     filter :enabled
     filter :is_root, label: I18n.t('IsRootItem')
     filter :created_at
@@ -67,10 +68,17 @@
               resource.enabled
             end
             row I18n.t('Color_Reference') do
-              raw "<div style='background-color: #{resource.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{resource.color_reference}'></span>"
+              raw "<div style='background-color: #{resource.color_reference}; border: 2px solid black; width: 20px; height: 20px' title='#{resource.color_reference}'></div>"
             end
-            row "#{t('Latitude')} & #{t('Longitude')}" do
-              "#{resource.lat};#{resource.lng}"
+            row "#{t("Location")} - #{t('Latitude')} & #{t('Longitude')}" do
+              #"#{resource.lat};#{resource.lng}"
+              #Rails.application.secrets.google_maps_api_key
+              if resource.lat && resource.lng
+                raw "<img style='max-width:1080px !important;background-color: border: 2px solid #{resource.color_reference}' src=\"https://maps.googleapis.com/maps/api/staticmap?center=#{resource.lat},#{resource.lng}&zoom=17&size=540x350&maptype=street&markers=color:blue|label:S|#{resource.lat},#{resource.lng}&key=#{Rails.application.secrets.google_maps_api_key}\"/>"
+              else
+                raw "<div style='background-color: border: 2px solid #{resource.color_reference};' title='#{resource.color_reference}'>
+                    </div>"
+              end
             end
             row I18n.t('Created_at') do
               resource.created_at
