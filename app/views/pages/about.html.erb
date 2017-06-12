@@ -1,6 +1,3 @@
-<% content_for :title do %><%= t('about')%><%= Rails.application.class.parent %><% end %>
-<br/><br/><br/>
-<h3><%= t('about')%></h3>
-<p>
-<%= Rails.application.class.parent %>
-</p>
+<div style='border-left: 25px solid red;margin-top:50px;margin-bottom:50px'>
+  <%= image_tag(RQRCode::QRCode.new('Hold your horses, we are creating something exciting!', :size => 8, :level => :h).as_png.to_data_url) %>
+</div>

@@ -1,5 +1,6 @@
 ---
 es:
+  upload_limit_size_message: El tamaño en conjunto de los archivos no puede superar
   api:
     not_authorized: No estás autorizado
   document: Documento
@@ -56,6 +57,8 @@ es:
   State: Region
   City: Ciudad
   category_details: Detalles de Categoría
+  created_at: Fecha de Creación
+  updated_at: Fecha de Actualización
   activerecord:
       attributes:
         user:

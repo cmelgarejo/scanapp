@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     current_user.has_role? 'admin' if current_user
   end
 
+  def set_admin_timezone
+    Time.zone = Rails.application.secrets.install_timezone #'Mexico/General'
+  end
+
   protected
 
   def configure_permitted_parameters

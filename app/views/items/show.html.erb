@@ -10,7 +10,7 @@
 
 <p>
   <strong>Qrcode:</strong>
-  <%= @qr = RQRCode::QRCode.new( 'https://github.com/whomwah/rqrcode', :size => 4, :level => :h ) %>
+  <%= @qr = RQRCode::QRCode.new( item.id, :size => 4, :level => :h ) %>
 </p>
 
 <p>
