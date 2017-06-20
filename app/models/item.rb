@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  scope :recently_updated, -> { where('updated_at >= ?', Date.today - 2.hours) }
   has_paper_trail
   belongs_to :company
   has_and_belongs_to_many :parents, inverse_of: :item,
@@ -35,4 +36,5 @@ class Item < ApplicationRecord
   #   require 'json'
   #   JSON.parse(self.extra_properties)
   # end
+
 end

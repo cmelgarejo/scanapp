@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   #resources :users
   namespace :api do #namespace :api, path: "", constraints: {:subdomain => "api"} do
     namespace :v1 do
-      resources :items
-      resources :companies
-      post 'authenticate', to: 'authentication#authenticate'
+      get 'items', to: 'items#index'
+      get 'items/:device_id', to: 'items#index'
+      get 'companies', to: 'companies#index'
+      get 'companies/:device_id', to: 'companies#index'
       get 'countries', to: 'locations#countries'
       get 'states', to: 'locations#states'
       get 'cities', to: 'locations#cities'
+      post 'authenticate', to: 'authentication#authenticate'
     end
   end
 
