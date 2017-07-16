@@ -10,4 +10,6 @@ class Api::V1::AuthenticationController < ApiController
       render json: { error: command.errors }, status: :unauthorized
     end
   end
+
+
 end
