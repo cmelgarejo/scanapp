@@ -38,7 +38,7 @@ class Api::V1::ItemsController < ApiController
   end
 
   def parents_except_fields
-    (template_except_fields << %w(country state city extra_properties)).flatten
+    (generic_except_fields << %w(is_template is_root company_id item_id country state city extra_properties)).flatten
   end
 
   def categories_except_fields
