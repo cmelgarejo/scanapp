@@ -15,8 +15,6 @@
 //= require select2
 //= require select2_locale_es
 //= require palette-color-picker
-//= require peek
-//= require peek/views/performance_bar
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require cocoon
