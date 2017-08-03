@@ -4,7 +4,7 @@ class Api::V1::ItemsController < ApiController
 
   def index
     box = /\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\),\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\)/.match(params[:box]) ? params[:box] : nil #if there's a bounding box, filter the items by that.
-    circle = /\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\),((?:-?\d*\.)?\d+)/.match(params[:circle]) ? params[:circle] : nil #if there's a bounding box, filter the items by that.
+    circle = /((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)/.match(params[:circle]) ? params[:circle] : nil #if there's a bounding box, filter the items by that.
     country = params[:country]
     state = params[:state]
     city= params[:city]
