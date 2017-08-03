@@ -7,6 +7,7 @@
 #= require select2_locale_es
 #= require country_state_select
 #= require chosen-jquery
+#= require ymaps
 $(document).ready ->
   if($('.color-reference-select option:selected').length > 0)
     $('.color-reference-select > option').each((i, el) -> $(el).css('background-color', el.innerHTML).css('color', el.innerHTML))
