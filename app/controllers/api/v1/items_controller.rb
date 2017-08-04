@@ -13,7 +13,7 @@ class Api::V1::ItemsController < ApiController
     @item_list.where!(country: country, state: state) if country && state && city.nil?
     @item_list.where!(country: country, state: state, city: city) if country && state && city
     @item_list.where!([':box::box @> point(lat, lng)', {box: box}]) if box
-    @item_list.where!(['(:point::point <-> point(lat, lng) * 100000) < 100)', {point: point}]) if point
+    @item_list.where!(['(:point::point <-> point(lat, lng)) * 100000) < 100', {point: point}]) if point
     json_response @item_list, except: item_list_except_fields
   end
 
