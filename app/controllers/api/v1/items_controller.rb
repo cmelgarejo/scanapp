@@ -4,7 +4,7 @@ class Api::V1::ItemsController < ApiController
 
   def index
     box = /\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\),\(((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)\)/.match(params[:box]) ? params[:box] : nil #if there's a bounding box, filter the items by that.
-    circle = /((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)/.match(params[:circle]) ? params[:circle] : nil #if there's a bounding box, filter the items by that.
+    point = /((?:-?\d*\.)?\d+),((?:-?\d*\.)?\d+)/.match(params[:point]) ? params[:point] : nil
     country = params[:country]
     state = params[:state]
     city= params[:city]
@@ -13,7 +13,7 @@ class Api::V1::ItemsController < ApiController
     @item_list.where!(country: country, state: state) if country && state && city.nil?
     @item_list.where!(country: country, state: state, city: city) if country && state && city
     @item_list.where!([':box::box @> point(lat, lng)', {box: box}]) if box
-    @item_list.where!([':circle::circle @> point(lat, lng)', {circle: circle}]) if circle
+    @item_list.where!(['(:point::point <-> point(lat, lng)< 100)', {point: point}]) if point
     json_response @item_list, except: item_list_except_fields
   end
 
