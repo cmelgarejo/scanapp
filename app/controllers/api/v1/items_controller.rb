@@ -64,7 +64,7 @@ class Api::V1::ItemsController < ApiController
   end
 
   def item_list_except_fields
-    (item_except_fields << generic_except_fields << %w(country state city enabled is_template is_root extra_properties lat lng)).flatten
+    (item_except_fields << generic_except_fields << %w(country state city enabled is_template is_root extra_properties)).flatten
   end
 
   # Use callbacks to share common setup or constraints between actions.
