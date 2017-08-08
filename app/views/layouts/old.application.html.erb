@@ -17,6 +17,13 @@
   </script>
 </head>
   <body>
-    <%= yield %>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+      <%= render 'layouts/messages' %>
+      <%= render 'peek/bar' %>
+      <%= yield %>
+    </main>
   </body>
 </html>
