@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
-  scope :recently_updated, -> { where('updated_at >= ?', Date.today - 2.hours) }
-  has_paper_trail
+  #scope :recently_updated, -> { where('updated_at >= ?', Date.today - 2.hours) }
+  #has_paper_trail
   belongs_to :company
   has_and_belongs_to_many :parents, inverse_of: :item,
                           join_table: 'item_relationships',
@@ -29,9 +29,9 @@ class Item < ApplicationRecord
   end
 
   def my_categories?(have_any_of_these)
-    ap self.categories & have_any_of_these
     self if self.categories & have_any_of_these
   end
+
   # def extra_properties
   #   require 'json'
   #   JSON.parse(self.extra_properties)

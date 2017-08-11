@@ -137,7 +137,6 @@ ActiveAdmin.register Item do
     end
   end
 
-  #form partial: 'form'
   form do |f|
     # within @head do
     #   script src: 'https://api-maps.yandex.ru/2.1/?lang=es&load=Map,Placemark', type: 'text/javascript'
@@ -193,6 +192,13 @@ ActiveAdmin.register Item do
     def permitted_params
       params.permit!
     end
+
+    def create
+      super do |format|
+        redirect_to admin_items_url and return if resource.valid?
+      end
+    end
+
   end
 
   member_action :pdf, method: :get do

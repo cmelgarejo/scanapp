@@ -17,6 +17,5 @@
 //= require palette-color-picker
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require cocoon
 //= require chosen-jquery
 //= require_tree .
