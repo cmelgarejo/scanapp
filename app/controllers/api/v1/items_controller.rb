@@ -19,7 +19,7 @@ class Api::V1::ItemsController < ApiController
 
   def show
     json_response @resource, include: {
-        attachment: {except: attachment_except_fields},
+        attachments: {except: attachment_except_fields},
         company: {except: company_except_fields},
         #template: {except: template_except_fields},
         parents: {except: parents_except_fields},

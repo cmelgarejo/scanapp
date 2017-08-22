@@ -28,7 +28,7 @@
 
 <label>Documents</label>
 <table>
-  <% @item.attachment.each do |doc| %>
+  <% @item.attachments.each do |doc| %>
   <tr>
     <td>
       <%= doc.document.file.filename %>
