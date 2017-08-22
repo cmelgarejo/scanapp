@@ -1,5 +1,7 @@
 ActiveAdmin.register Item do
-  permit_params :label, :description, :color_reference, :picture, :lat, :lng, :enabled, :is_template, :is_root, :extra_properties, :attachment_attributes, :path
+  permit_params :label, :description, :color_reference, :picture, :lat, :lng, :enabled, :is_template, :is_root,
+                :extra_properties, :company_id, :path,
+                attachments_attributes: [ :id, :item_id ]
   # :qrcode,
   # :company,
   # :item
@@ -120,8 +122,8 @@ ActiveAdmin.register Item do
       end
       tab I18n.t('Attachments') do
         panel I18n.t('Attachments') do
-          if (!item.attachment.nil?)
-            table_for item.attachment do |att|
+          if (!item.attachments.nil?)
+            table_for item.attachments do |att|
               att.column :path do |doc|
                 a(build_label(doc.path.file.original_filename), href: doc.path, class: 'attachment-link', target: '_blank')
               end
@@ -173,16 +175,18 @@ ActiveAdmin.register Item do
           f.input :categories, as: :select, label: I18n.t('Categories'), include_blank: false, input_html: {class: 'select2'}
         end
       end
-      tab I18n.t('Attachments') do
-        f.has_many :attachment, heading: false, allow_destroy: true, as: :grid do |ff|
-          ff.input :path, label: I18n.t('Attachment'), as: :file, hint:
-              (ff.object.path.present? ?
-                   ((%w(jpg jpeg gif png).map {|r| ff.object.path.url.include?(r)}.inject(&:|)) ?
-                        image_tag(ff.object.path.url, class: 'thumbnail')
-                        :
-                        build_hint_file(ff.object.path.file.original_filename, ff.object.path))
-                   :
-                   content_tag(:span, I18n.t('no_file')))
+      if !f.object.new_record?
+        tab I18n.t('Attachments') do
+          f.has_many :attachments, heading: false, allow_destroy: true, as: :grid do |ff|
+            ff.input :path, label: I18n.t('Attachment'), as: :file, hint:
+                (ff.object.path.present? ?
+                     ((%w(jpg jpeg gif png).map {|r| ff.object.path.url.include?(r)}.inject(&:|)) ?
+                          image_tag(ff.object.path.url, class: 'thumbnail')
+                          :
+                          build_hint_file(ff.object.path.file.original_filename, ff.object.path))
+                     :
+                     content_tag(:span, I18n.t('no_file')))
+          end
         end
       end
     end
@@ -195,7 +199,7 @@ ActiveAdmin.register Item do
 
     def create
       super do |format|
-        redirect_to admin_items_url and return if resource.valid?
+        redirect_to edit_admin_item_path(resource.id), alert: "#{I18n.t('Now_You_Can_add_files')} #{resource.label}" and return if resource.valid?
       end
     end
 

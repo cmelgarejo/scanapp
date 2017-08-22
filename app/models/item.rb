@@ -16,8 +16,8 @@ class Item < ApplicationRecord
                           uniq: true
 
   #attr_accessor :attachments
-  has_many :attachment
-  accepts_nested_attributes_for :attachment, allow_destroy: true
+  has_many :attachments
+  accepts_nested_attributes_for :attachments, allow_destroy: true
   accepts_nested_attributes_for :parents, allow_destroy: true
   accepts_nested_attributes_for :children, allow_destroy: true
 

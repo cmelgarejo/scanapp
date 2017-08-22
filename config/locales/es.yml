@@ -1,5 +1,6 @@
 ---
 es:
+  Now_You_Can_add_files: 'Ahora puedes agregar archivos al item: '
   upload_limit_size_message: El tamaño en conjunto de los archivos no puede superar
   api:
     not_authorized: No estás autorizado
