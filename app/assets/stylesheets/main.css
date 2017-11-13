@@ -168,6 +168,15 @@ header .block .download-btn a {
   line-height: 1;
   margin-right: 5px;
 }
+#team .btn-linkedin {
+    background: #0084bf;
+    color: #fff;
+    border-radius: 50%;
+    padding: 9px 14px;
+    font-size: 17px;
+    line-height: 1;
+    margin-right: 5px;
+}
 #team .btn-twitter {
   background: #29c5f6;
   color: #fff;
@@ -175,6 +184,14 @@ header .block .download-btn a {
   padding: 8px 9px;
   font-size: 20px;
   line-height: 1;
+}
+#team .btn-github {
+    background: #010101;
+    color: #fff;
+    border-radius: 50%;
+    padding: 8px 9px;
+    font-size: 20px;
+    line-height: 1;
 }
 #team .media .pull-left {
   padding-right: 25px;
