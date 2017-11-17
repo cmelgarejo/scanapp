@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  root to: 'visitors#index'
+  root to: 'visitors#index-es'
+  get 'en', to: 'visitors#index-en'
   #resources :users
   namespace :api do #namespace :api, path: "", constraints: {:subdomain => "api"} do
     namespace :v1 do
