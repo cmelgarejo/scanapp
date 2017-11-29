@@ -50,7 +50,7 @@ gem 'select2-rails'#, '~> 4.0', '>= 4.0.3'
 gem 'activeadmin_latlng', git: 'https://github.com/cmelgarejo/activeadmin-latlng'
 #gem 'cocoon'
 gem 'activeadmin-ajax_filter'
-gem 'jquery-palette-color-picker-rails', git: 'https://github.com/cmelgarejo/jquery-palette-color-picker-rails'
+#gem 'jquery-palette-color-picker-rails', git: 'https://github.com/cmelgarejo/jquery-palette-color-picker-rails'
 #gem 'activeadmin-select2', git: 'https://github.com/mfairburn/activeadmin-select2'n-select
 
 gem 'chosen-rails'

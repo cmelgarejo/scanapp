@@ -156,7 +156,7 @@ ActiveAdmin.register Item do
           # f.input :city, as: :select, include_blank: false, options: CountryStateSelect.city_options(form: f, field_names: {  :state => :state, :city => :city })
           #http://nominatim.openstreetmap.org/search?q=Mexico,Aguascalientes&format=json
           f.input :description, label: I18n.t('Description')
-          f.input :color_reference, as: :color_picker, label: I18n.t('Color_Reference')
+          f.input :color_reference, as: :color, label: I18n.t('Color_Reference'), input_html: { style: 'width: 10%;height: 40px'}
           f.input :lat, label: I18n.t('Latitude')
           f.input :lng, label: I18n.t('Longitude')
           #f.latlng lang: :es, map: :yandex, id_lat: 'item_lat', id_lng: 'item_lng', start_lat: Rails.application.secrets.start_lat, start_lng: Rails.application.secrets.start_lng, loading_map: false

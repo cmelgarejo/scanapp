@@ -24,11 +24,6 @@ GIT
       activeadmin
 
 GIT
-  remote: https://github.com/cmelgarejo/jquery-palette-color-picker-rails
-  revision: e89e806d959cb5e1550c1340196d1bb868e71ca0
-  specs:
-
-GIT
   remote: https://github.com/codahale/bcrypt-ruby.git
   revision: 23b0517e20e7ddf2e733c1bcdb22b0b12166f042
   specs:
@@ -471,7 +466,6 @@ DEPENDENCIES
   i18n-tasks (= 0.9.16)
   inherited_resources!
   jbuilder
-  jquery-palette-color-picker-rails!
   jquery-rails
   jwt
   launchy
@@ -509,4 +503,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.13.7
+   1.15.4
