@@ -37,7 +37,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png dxf dwg xls pdf doc docx kml kmz txt ods odt zip rar 7z)
+    %w(jpg jpeg gif png dxf dwg xls pdf doc docx kml kmz txt ods odt zip rar 7z mp4 mpeg avi)
   end
 
   def content_type_blacklist
