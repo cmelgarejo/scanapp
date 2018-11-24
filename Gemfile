@@ -34,6 +34,7 @@ gem 'carrierwave'
 #gem 'carrierwave-base64'
 #gem 'carrierwave-postgresql'
 gem 'paper_trail'
+gem 'paper_trail-association_tracking'
 
 #gem 'peek'
 #gem 'peek-git'
